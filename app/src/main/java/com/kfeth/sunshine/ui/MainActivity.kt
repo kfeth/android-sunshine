@@ -1,7 +1,8 @@
-package com.kfeth.sunshine
+package com.kfeth.sunshine.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.kfeth.sunshine.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
