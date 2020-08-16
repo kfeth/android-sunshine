@@ -4,16 +4,17 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.kfeth.sunshine.R
+import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class WeatherDetailsActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity() {
 
-    private val viewModel: WeatherDetailsViewModel by viewModels()
+    private val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weather_details)
+        setContentView(R.layout.activity_details)
     }
 }
