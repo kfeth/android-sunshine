@@ -4,6 +4,6 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class WeatherRepository @Inject constructor() {
+class WeatherRepository @Inject constructor(private val weatherDao: WeatherDao) {
 
 }

@@ -41,12 +41,14 @@ android {
 dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
     kapt "androidx.hilt:hilt-compiler:$hiltJetpackVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 
     implementation "androidx.activity:activity-ktx:$activityKtxVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltJetpackVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
