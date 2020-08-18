@@ -14,9 +14,11 @@ class WeatherRepository @Inject constructor(
 ) {
 
     fun getWeather(lat: Double, lng: Double): Flow<Resource<Weather>> = networkBoundResource(
-        dbQuery = { weatherDao.get(lat, lng) },
+        query = { weatherDao.get(lat, lng) },
         fetch = { weatherService.getWeatherForecast(lat, lng) },
         saveFetchResult = { weatherDao.insert(Weather(it.lat, it.lon, it.timezone)) },
         shouldFetch = { true }
     )
+
+    val weatherList = weatherDao.getAll()
 }

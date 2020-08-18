@@ -15,15 +15,19 @@
 
         <activity
             android:name=".ui.SearchActivity"
-            android:theme="@style/AppTheme.NoActionBar.Transparent"
-            android:windowSoftInputMode="adjustPan|stateVisible">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.DetailsActivity" />
+        <activity android:name=".ui.DetailsActivity" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
 
     </application>
 
