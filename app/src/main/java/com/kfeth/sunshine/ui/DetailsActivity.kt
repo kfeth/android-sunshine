@@ -9,7 +9,6 @@ import com.kfeth.sunshine.R
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 

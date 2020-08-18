@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dimmed"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_3"
+    tools:context=".ui.SearchActivity">
+
+    <include
+        android:id="@+id/search"
+        layout="@layout/view_search_bar" />
+
+    <View
+        android:id="@+id/divider"
+        style="@style/ListDivider" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:scrollbars="vertical"
+        tools:itemCount="4"
+        tools:listitem="@layout/list_item_search_result" />
+
+</LinearLayout>
