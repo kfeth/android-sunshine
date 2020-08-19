@@ -9,6 +9,8 @@ class SearchViewModel @ViewModelInject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
+    fun setSearchQuery(search: String) {}
+
     val weatherList = repository.weatherList.asLiveData()
 
 }
