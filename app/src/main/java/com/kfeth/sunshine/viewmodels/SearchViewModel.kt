@@ -21,14 +21,12 @@ class SearchViewModel @ViewModelInject constructor(
     private val searchChannel = ConflatedBroadcastChannel<String>()
     private val emptyFlow = flow { emit(Resource.success<List<Location>>(emptyList())) }
 
-    val resource = searchChannel.asFlow().flatMapLatest { query ->
+    private val resource = searchChannel.asFlow().flatMapLatest { query ->
         when {
             query.isNotEmpty() -> repository.searchLocations(query)
             else -> emptyFlow
         }
     }.asLiveData()
-
-    val isLoading = resource.map { it.isLoading() }
 
     fun setQuery(query: String) {
         val input = query.sanitise()
@@ -36,4 +34,7 @@ class SearchViewModel @ViewModelInject constructor(
             searchChannel.offer(input)
         }
     }
+
+    val isLoading = resource.map { it.isLoading() }
+    val resultsList = resource.map { it.data.orEmpty() }
 }

@@ -20,6 +20,7 @@
 
         <include
             android:id="@+id/search"
+            app:viewModel="@{viewModel}"
             layout="@layout/view_search_bar" />
 
         <View
