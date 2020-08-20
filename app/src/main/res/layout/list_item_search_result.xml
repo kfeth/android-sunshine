@@ -9,8 +9,8 @@
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="weather"
-            type="com.kfeth.sunshine.data.Weather" />
+            name="location"
+            type="com.kfeth.sunshine.data.Location" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{weather.lat + `, ` + weather.lon}"
+            android:text="@{location.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{weather.timezone}"
+            android:text="@{location.id + ``}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/icon"

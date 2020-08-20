@@ -2,6 +2,7 @@ package com.kfeth.sunshine.data
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
@@ -15,4 +16,10 @@ interface WeatherDao {
 
     @Insert
     suspend fun insert(weather: Weather): Long
+
+     @Query("SELECT * FROM locations WHERE name LIKE '%' || :searchTerm || '%' ORDER BY name")
+    fun searchLocations(searchTerm: String): Flow<List<Location>>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun bulkInsert(items: List<Location>)
 }

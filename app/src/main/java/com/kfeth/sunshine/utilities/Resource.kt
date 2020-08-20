@@ -22,3 +22,7 @@ data class Resource<out T>(val status: Status, val data: T?, val message: String
         }
     }
 }
+
+fun <T> Resource<T>.isLoading(): Boolean {
+    return status == Resource.Status.LOADING
+}

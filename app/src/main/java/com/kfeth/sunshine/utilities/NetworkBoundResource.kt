@@ -1,6 +1,6 @@
 package com.kfeth.sunshine.utilities
 
-import kotlinx.coroutines.delay
+import android.util.Log
 import kotlinx.coroutines.flow.*
 import retrofit2.Response
 
@@ -13,14 +13,16 @@ fun <ResultType, RequestType> networkBoundResource(
 ) =
     flow {
         emit(Resource.loading(null))
+
         val data = query().first()
         val flow = if (shouldFetch(data)) {
             emit(Resource.loading(data))
-            delay(5000)
+
             try {
                 saveFetchResult((fetch().body()!!))
                 query().map { Resource.success(it) }
             } catch (throwable: Throwable) {
+                Log.e("networkBoundResource", "$throwable")
                 onFetchFailed(throwable)
                 query().map { Resource.error(throwable.message ?: "Network error", it) }
             }
