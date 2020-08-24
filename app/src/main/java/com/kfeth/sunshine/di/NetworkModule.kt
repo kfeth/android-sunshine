@@ -1,7 +1,7 @@
 package com.kfeth.sunshine.di
 
 import com.kfeth.sunshine.BuildConfig
-import com.kfeth.sunshine.BuildConfig.API_BASE_URL
+import com.kfeth.sunshine.BuildConfig.WEATHER_API_URL
 import com.kfeth.sunshine.api.GeocodeService
 import com.kfeth.sunshine.api.WeatherService
 import com.squareup.moshi.Moshi
@@ -31,7 +31,7 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi) : Retrofit = Retrofit.Builder()
-        .baseUrl(API_BASE_URL)
+        .baseUrl(WEATHER_API_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(okHttpClient)
         .build()
