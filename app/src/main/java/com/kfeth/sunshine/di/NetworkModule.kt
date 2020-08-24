@@ -2,6 +2,7 @@ package com.kfeth.sunshine.di
 
 import com.kfeth.sunshine.BuildConfig
 import com.kfeth.sunshine.BuildConfig.API_BASE_URL
+import com.kfeth.sunshine.api.GeocodeService
 import com.kfeth.sunshine.api.WeatherService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -22,6 +23,10 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideWeatherService(retrofit: Retrofit): WeatherService = retrofit.create(WeatherService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideGeocodeService(retrofit: Retrofit): GeocodeService = retrofit.create(GeocodeService::class.java)
 
     @Singleton
     @Provides

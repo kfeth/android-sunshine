@@ -28,6 +28,7 @@ android {
         buildTypes.each {
             it.buildConfigField "String", "API_BASE_URL", '"https://api.openweathermap.org/data/2.5/"'
             it.buildConfigField "String", "API_KEY", '"957596741872ad1eee58bb699c49294e"'
+            it.buildConfigField "String", "REVERSE_GEOCODE_API_URL", '"https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=%s&longitude=%s&localityLanguage=en"'
         }
     }
 

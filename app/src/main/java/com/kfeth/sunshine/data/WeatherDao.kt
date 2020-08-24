@@ -17,18 +17,9 @@ interface WeatherDao {
     @Insert
     suspend fun insert(weather: Weather): Long
 
-    @Query(
-        "SELECT * FROM locations " +
-                "WHERE name LIKE '%' || :searchTerm || '%' " +
-                "ORDER BY " +
-                "CASE " +
-                    "WHEN name LIKE :searchTerm || '%' THEN 1 " +
-                    "WHEN name LIKE '%' || :searchTerm THEN 3 " +
-                    "ELSE 2 " +
-                "END"
-    )
+    @Query("SELECT * FROM locations WHERE queryString LIKE :searchTerm || '%' ORDER BY name")
     fun searchLocations(searchTerm: String): Flow<List<Location>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun bulkInsert(items: List<Location>)
 }

@@ -6,10 +6,24 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "locations")
 data class Location(
     @PrimaryKey val id: Int,
-    val name: String
+    val name: String,
+    val latitude: Double,
+    val longitude: Double,
+    val temp: Double,
+    val weatherIcon: String,
+    val queryString: String,
+    val addressString: String,
+    val countryCode: String,
 ) {
-    constructor(response: LocationResponse) : this(
-        id = response.id,
-        name = response.name
+    constructor(query: String, location: LocationResponse, geo: GeocodeResponse) : this(
+        id = location.id,
+        name = location.name,
+        latitude = location.coordinates.latitude,
+        longitude = location.coordinates.longitude,
+        temp = location.condition.temp,
+        weatherIcon = location.weather.first().icon,
+        queryString = query,
+        addressString = geo.addressString,
+        countryCode = geo.countryCode
     )
 }
