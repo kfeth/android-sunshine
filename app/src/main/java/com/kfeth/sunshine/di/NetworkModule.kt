@@ -3,6 +3,8 @@ package com.kfeth.sunshine.di
 import com.kfeth.sunshine.BuildConfig
 import com.kfeth.sunshine.BuildConfig.API_BASE_URL
 import com.kfeth.sunshine.api.WeatherService
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,11 +25,19 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient) : Retrofit = Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi) : Retrofit = Retrofit.Builder()
         .baseUrl(API_BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(okHttpClient)
         .build()
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi {
+        return Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+    }
 
     @Provides
     @Singleton
