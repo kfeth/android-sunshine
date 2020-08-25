@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import java.util.Locale
+import kotlin.math.roundToInt
 
 fun <T : ViewDataBinding> ViewGroup.createBinding(@LayoutRes layoutRes: Int): T =
     DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
@@ -16,4 +17,8 @@ fun <T : ViewDataBinding> AppCompatActivity.createBinding(@LayoutRes layoutRes: 
 
 fun String.sanitise(): String {
     return toLowerCase(Locale.getDefault()).trim()
+}
+
+fun Double.degreesFormat(): String {
+    return "${roundToInt()}" + "°"
 }

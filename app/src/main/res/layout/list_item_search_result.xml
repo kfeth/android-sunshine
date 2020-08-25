@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
@@ -21,14 +22,14 @@
         android:paddingTop="@dimen/spacing_3">
 
         <ImageView
-            android:id="@+id/icon"
+            android:id="@+id/flagIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="@dimen/spacing_3"
+            app:flagIconFromCountryCode="@{location.countryCode}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_location_24dp"
-            app:flagIconFromCountryCode="@{location.countryCode}" />
+            app:srcCompat="@drawable/ic_location_24dp" />
 
         <TextView
             android:id="@+id/title"
@@ -38,9 +39,9 @@
             android:maxLines="1"
             android:text="@{location.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon"
-            app:layout_constraintTop_toTopOf="@+id/icon"
+            app:layout_constraintEnd_toStartOf="@+id/temperature"
+            app:layout_constraintStart_toEndOf="@+id/flagIcon"
+            app:layout_constraintTop_toTopOf="@+id/flagIcon"
             tools:text="@tools:sample/cities" />
 
         <TextView
@@ -51,18 +52,41 @@
             android:maxLines="1"
             android:text="@{location.addressString}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon"
+            app:layout_constraintEnd_toStartOf="@+id/temperature"
+            app:layout_constraintStart_toEndOf="@+id/flagIcon"
             app:layout_constraintTop_toBottomOf="@+id/title"
             tools:text="@tools:sample/cities" />
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/spacing_3"
+            app:layout_constraintBottom_toBottomOf="@+id/subtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title"
+            app:weatherIcon="@{location}"
+            tools:srcCompat="@drawable/ic_weather_02d" />
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_1"
+            android:text="@{location.temp}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintBottom_toBottomOf="@+id/weatherIcon"
+            app:layout_constraintEnd_toStartOf="@+id/weatherIcon"
+            app:layout_constraintTop_toTopOf="@+id/weatherIcon"
+            tools:text="15°" />
 
         <View
             android:id="@+id/divider"
             style="@style/ListDivider"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_marginTop="@dimen/spacing_3"
-            app:layout_constraintStart_toEndOf="@+id/icon"
-            app:layout_constraintTop_toBottomOf="@+id/icon" />
+            app:layout_constraintStart_toEndOf="@+id/flagIcon"
+            app:layout_constraintTop_toBottomOf="@+id/flagIcon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
