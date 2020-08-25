@@ -7,7 +7,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.kfeth.sunshine.BuildConfig.FLAG_ICON_URL
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.data.Location
+import com.kfeth.sunshine.data.Weather
 
 @BindingAdapter("imageFromUrl")
 fun imageFromUrl(imageView: ImageView, url: String) {
@@ -24,6 +24,6 @@ fun flagIconFromCountryCode(imageView: ImageView, countryCode: String) {
 }
 
 @BindingAdapter("weatherIcon")
-fun weatherIcon(imageView: ImageView, location: Location) {
-    imageView.setImageResource(location.weatherIconResId)
+fun weatherIcon(imageView: ImageView, weather: Weather) {
+    imageView.setImageResource(weather.iconResId)
 }

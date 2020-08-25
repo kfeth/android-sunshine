@@ -22,7 +22,7 @@ fun <ResultType, RequestType> networkBoundResource(
                 saveFetchResult((fetch().body()!!))
                 query().map { Resource.success(it) }
             } catch (throwable: Throwable) {
-                Log.e("networkBoundResource", "$throwable")
+                throwable.printStackTrace()
                 onFetchFailed(throwable)
                 query().map { Resource.error(throwable.message ?: "Network error", it) }
             }

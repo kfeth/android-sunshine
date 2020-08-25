@@ -10,8 +10,8 @@
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="location"
-            type="com.kfeth.sunshine.data.Location" />
+            name="weather"
+            type="com.kfeth.sunshine.data.Weather" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="@dimen/spacing_3"
-            app:flagIconFromCountryCode="@{location.countryCode}"
+            app:flagIconFromCountryCode="@{weather.countryCode}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_location_24dp" />
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{location.name}"
+            android:text="@{weather.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
             app:layout_constraintEnd_toStartOf="@+id/temperature"
             app:layout_constraintStart_toEndOf="@+id/flagIcon"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{location.addressString}"
+            android:text="@{weather.addressString}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             app:layout_constraintEnd_toStartOf="@+id/temperature"
             app:layout_constraintStart_toEndOf="@+id/flagIcon"
@@ -65,7 +65,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/subtitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/title"
-            app:weatherIcon="@{location}"
+            app:weatherIcon="@{weather}"
             tools:srcCompat="@drawable/ic_weather_02d" />
 
         <TextView
@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/spacing_1"
-            android:text="@{location.temp}"
+            android:text="@{weather.temp}"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             app:layout_constraintBottom_toBottomOf="@+id/weatherIcon"
             app:layout_constraintEnd_toStartOf="@+id/weatherIcon"

@@ -18,24 +18,19 @@ class WeatherRepository @Inject constructor(
     private val geocodeService: GeocodeService
 ) {
 
-    fun getWeather(lat: Double, lng: Double): Flow<Resource<Weather>> = networkBoundResource(
-        query = { weatherDao.get(lat, lng) },
-        fetch = { weatherService.getWeatherForecast(lat, lng) },
-        saveFetchResult = { weatherDao.insert(Weather(it.lat, it.lon, it.timezone)) },
-    )
-
-    fun searchLocations(query: String): Flow<Resource<List<Location>>> = networkBoundResource(
+    fun searchWeatherLocations(query: String): Flow<Resource<List<Weather>>> = networkBoundResource(
         shouldFetch = { query.length >= 3 },
-        query = { weatherDao.searchLocations(query) },
+        query = { weatherDao.search(query) },
         fetch = {
             delay(DEBOUNCE_DELAY_MILLIS)
-            weatherService.searchLocations(query)
+            weatherService.search(query)
         },
         saveFetchResult = { searchResponse ->
-            val locations = searchResponse.list.map {
-                Location(query, it, reverseGeocode(it.coordinates.latitude, it.coordinates.longitude))
+            val weatherList = searchResponse.list.map {
+                val geoCodeResponse = reverseGeocode(it.coordinates.latitude, it.coordinates.longitude)
+                Weather(query, it, geoCodeResponse)
             }
-            weatherDao.bulkInsert(locations)
+            weatherDao.bulkInsert(weatherList)
         }
     )
 

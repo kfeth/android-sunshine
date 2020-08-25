@@ -8,18 +8,10 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WeatherDao {
-    @Query("SELECT * FROM weather ORDER BY id DESC")
-    fun getAll(): Flow<List<Weather>>
 
-    @Query("SELECT * FROM weather WHERE lat = :lat AND lon = :lon")
-    fun get(lat: Double, lon: Double): Flow<Weather>
-
-    @Insert
-    suspend fun insert(weather: Weather): Long
-
-    @Query("SELECT * FROM locations WHERE queryString LIKE :searchTerm || '%' ORDER BY name")
-    fun searchLocations(searchTerm: String): Flow<List<Location>>
+    @Query("SELECT * FROM weather WHERE queryString LIKE :query || '%' ORDER BY name")
+    fun search(query: String): Flow<List<Weather>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun bulkInsert(items: List<Location>)
+    suspend fun bulkInsert(items: List<Weather>)
 }

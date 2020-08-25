@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Weather::class, Location::class],
+    entities = [Weather::class],
     version = 1,
     exportSchema = false
 )
