@@ -1,13 +1,15 @@
 package com.kfeth.sunshine.adapters
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.kfeth.sunshine.BuildConfig.FLAG_ICON_URL
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.data.Weather
+import com.kfeth.sunshine.utilities.degreesFormat
+import com.kfeth.sunshine.utilities.toWeatherIconDrawable
 
 @BindingAdapter("imageFromUrl")
 fun imageFromUrl(imageView: ImageView, url: String) {
@@ -24,6 +26,11 @@ fun flagIconFromCountryCode(imageView: ImageView, countryCode: String) {
 }
 
 @BindingAdapter("weatherIcon")
-fun weatherIcon(imageView: ImageView, weather: Weather) {
-    imageView.setImageResource(weather.iconResId)
+fun weatherIcon(imageView: ImageView, iconId: String) {
+    imageView.setImageResource(iconId.toWeatherIconDrawable())
+}
+
+@BindingAdapter("formattedTemperature")
+fun formattedTemperature(textView: TextView, temperature: Double) {
+    textView.text = temperature.degreesFormat()
 }

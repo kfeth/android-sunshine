@@ -9,9 +9,18 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface WeatherDao {
 
-    @Query("SELECT * FROM weather WHERE queryString LIKE :query || '%' ORDER BY name")
-    fun search(query: String): Flow<List<Weather>>
+    @Query("SELECT * FROM locations WHERE queryString LIKE :query || '%' ORDER BY name")
+    fun searchLocations(query: String): Flow<List<WeatherLocation>>
+
+    @Query("SELECT * FROM locations WHERE id = :weatherId")
+    fun getWeatherLocation(weatherId: Int): Flow<WeatherLocation>
+
+    @Query("SELECT * FROM weather WHERE id = :weatherId")
+    fun getCurrentWeather(weatherId: Int): Flow<CurrentWeather>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun bulkInsert(items: List<Weather>)
+    suspend fun bulkInsert(items: List<WeatherLocation>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(currentWeather: CurrentWeather)
 }

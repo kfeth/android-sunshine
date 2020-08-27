@@ -18,21 +18,32 @@ class WeatherRepository @Inject constructor(
     private val geocodeService: GeocodeService
 ) {
 
-    fun searchWeatherLocations(query: String): Flow<Resource<List<Weather>>> = networkBoundResource(
+    fun searchWeatherLocations(query: String): Flow<Resource<List<WeatherLocation>>> = networkBoundResource(
         shouldFetch = { query.length >= 3 },
-        query = { weatherDao.search(query) },
+        query = { weatherDao.searchLocations(query) },
         fetch = {
             delay(DEBOUNCE_DELAY_MILLIS)
-            weatherService.search(query)
+            weatherService.searchLocations(query)
         },
         saveFetchResult = { searchResponse ->
-            val weatherList = searchResponse.list.map {
+            val locationsList = searchResponse.list.map {
                 val geoCodeResponse = reverseGeocode(it.coordinates.latitude, it.coordinates.longitude)
-                Weather(query, it, geoCodeResponse)
+                WeatherLocation(query, it, geoCodeResponse)
             }
-            weatherDao.bulkInsert(weatherList)
+            weatherDao.bulkInsert(locationsList)
         }
     )
+
+    fun getCurrentWeather(weatherId: Int): Flow<Resource<CurrentWeather>> = networkBoundResource(
+        shouldFetch = { true },
+        query = { weatherDao.getCurrentWeather(weatherId) },
+        fetch = { weatherService.currentWeather(weatherId) },
+        saveFetchResult = { weatherDao.insert(CurrentWeather(it)) }
+    )
+
+    fun getWeatherLocation(weatherId: Int): Flow<WeatherLocation> {
+        return weatherDao.getWeatherLocation(weatherId)
+    }
 
     private suspend fun reverseGeocode(latitude: Double, longitude: Double): GeocodeResponse {
         val url = REVERSE_GEOCODE_API_URL.format(latitude, longitude)

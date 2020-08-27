@@ -2,14 +2,16 @@ package com.kfeth.sunshine.data
 
 import com.squareup.moshi.Json
 
-data class SearchResponse(val list: List<WeatherLocationResponse>)
+data class SearchResponse(
+    @Json(name = "list") val list: List<WeatherLocationResponse>
+)
 
 data class WeatherLocationResponse(
-    val id: Int,
-    val name: String,
+    @Json(name = "id") val id: Int,
+    @Json(name = "name") val name: String,
     @Json(name = "coord") val coordinates: CoordinatesResponse,
-    @Json(name = "main") val temperature: TemperatureResponse,
-    @Json(name = "weather") val conditions: List<ConditionResponse>
+    @Json(name = "weather") val conditions: List<ConditionResponse>,
+    @Json(name = "main") val environment: EnvironmentResponse
 )
 
 data class CoordinatesResponse(
@@ -17,10 +19,13 @@ data class CoordinatesResponse(
     @Json(name = "lon") val longitude: Double
 )
 
-data class TemperatureResponse(
-    val temp: Double
+data class EnvironmentResponse(
+    @Json(name = "temp") val temperature: Double,
+    @Json(name = "pressure") val pressure: Int,
+    @Json(name = "humidity") val humidity: Int,
 )
 
 data class ConditionResponse(
-    @Json(name = "icon") val iconId: String
+    @Json(name = "icon") val iconId: String,
+    @Json(name = "description") val description: String
 )

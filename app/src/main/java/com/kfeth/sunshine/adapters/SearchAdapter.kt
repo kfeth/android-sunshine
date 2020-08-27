@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.data.Weather
+import com.kfeth.sunshine.data.WeatherLocation
 import com.kfeth.sunshine.databinding.ListItemSearchResultBinding
 import com.kfeth.sunshine.utilities.createBinding
 
-class SearchAdapter(private val itemClickListener: (Weather) -> Unit) :
-    ListAdapter<Weather, SearchAdapter.ViewHolder>(WeatherDiffCallback()) {
+class SearchAdapter(private val itemClickListener: (WeatherLocation) -> Unit) :
+    ListAdapter<WeatherLocation, SearchAdapter.ViewHolder>(WeatherLocationDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(parent.createBinding(R.layout.list_item_search_result))
@@ -21,9 +21,9 @@ class SearchAdapter(private val itemClickListener: (Weather) -> Unit) :
 
     class ViewHolder(private val binding: ListItemSearchResultBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Weather, itemClickListener: (Weather) -> Unit) {
+        fun bind(item: WeatherLocation, itemClickListener: (WeatherLocation) -> Unit) {
             binding.apply {
-                weather = item
+                weatherLocation = item
                 clickListener = View.OnClickListener { itemClickListener(item) }
                 executePendingBindings()
             }
@@ -31,12 +31,12 @@ class SearchAdapter(private val itemClickListener: (Weather) -> Unit) :
     }
 }
 
-class WeatherDiffCallback : DiffUtil.ItemCallback<Weather>() {
-    override fun areItemsTheSame(oldItem: Weather, newItem: Weather): Boolean {
+class WeatherLocationDiffCallback : DiffUtil.ItemCallback<WeatherLocation>() {
+    override fun areItemsTheSame(oldItem: WeatherLocation, newItem: WeatherLocation): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Weather, newItem: Weather): Boolean {
+    override fun areContentsTheSame(oldItem: WeatherLocation, newItem: WeatherLocation): Boolean {
         return oldItem == newItem
     }
 }

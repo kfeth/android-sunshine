@@ -1,16 +1,18 @@
 package com.kfeth.sunshine.data
 
+import com.squareup.moshi.Json
+
 data class GeocodeResponse(
-    val countryCode: String,
-    val localityInfo: LocalityInfoResponse
+    @Json(name = "countryCode") val countryCode: String,
+    @Json(name = "localityInfo") val localityInfo: LocalityInfoResponse
 )
 
 data class LocalityInfoResponse(
-    val administrative: List<AdminResponse>
+    @Json(name = "administrative") val administrative: List<AdminResponse>
 )
 
 data class AdminResponse(
-    val name: String
+    @Json(name = "name") val name: String
 )
 
 val GeocodeResponse.addressString: String

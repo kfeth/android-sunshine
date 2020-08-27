@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
-import com.kfeth.sunshine.data.Weather
+import com.kfeth.sunshine.data.WeatherLocation
 import com.kfeth.sunshine.data.WeatherRepository
 import com.kfeth.sunshine.utilities.Resource
 import com.kfeth.sunshine.utilities.isLoading
@@ -20,9 +20,9 @@ class SearchViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
     private val searchChannel = ConflatedBroadcastChannel<String>()
-    private val emptyFlow = flow { emit(Resource.success<List<Weather>>(emptyList())) }
+    private val emptyFlow = flow { emit(Resource.success<List<WeatherLocation>>(emptyList())) }
 
-    private val resource: LiveData<Resource<List<Weather>>> =
+    private val resource: LiveData<Resource<List<WeatherLocation>>> =
         searchChannel.asFlow().flatMapLatest { query ->
             when {
                 query.isNotEmpty() -> repository.searchWeatherLocations(query)
