@@ -1,7 +1,6 @@
 package com.kfeth.sunshine.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
@@ -17,8 +16,8 @@ import kotlinx.android.synthetic.main.view_search_bar.editText
 class SearchActivity : AppCompatActivity() {
 
     private val searchViewModel: SearchViewModel by viewModels()
-    private val listAdapter = SearchAdapter(itemClickListener = { location ->
-        Log.d("SearchActivity", "Clicked: $location")
+    private val listAdapter = SearchAdapter(itemClickListener = { weatherLocation ->
+        startActivity(DetailsActivity.newIntent(this, weatherLocation.id))
     })
 
     override fun onCreate(savedInstanceState: Bundle?) {
