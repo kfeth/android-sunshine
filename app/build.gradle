@@ -65,6 +65,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayoutVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.google.dagger:hilt-android:$hiltVersion"

@@ -6,4 +6,13 @@
     <!-- Search Screen -->
     <string name="search_hint"><![CDATA[Search towns & cities]]></string>
 
+    <!-- Details Screen -->
+    <string name="cloud">Cloud:</string>
+    <string name="wind">Wind:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="visibility">Visibility:</string>
+    <string name="max_wind_speed">Max wind speed:</string>
+    <string name="sunrise_sunset">Sunrise / sunset:</string>
+    <string name="updated">last update %s</string>
+
 </resources>

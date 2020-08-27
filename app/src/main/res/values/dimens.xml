@@ -7,4 +7,6 @@
     <dimen name="spacing_5">32dp</dimen>
     <dimen name="spacing_6">64dp</dimen>
 
+    <dimen name="current_weather_page_height">190dp</dimen>
+
 </resources>
