@@ -33,13 +33,7 @@ class DetailsActivity : AppCompatActivity() {
             PagerSnapHelper().attachToRecyclerView(this)
         }
 
-        viewModel.location.observe(this, {
-            Log.d("DetailsActivity", "location: $it")
-        })
-
-        viewModel.weather.observe(this, {
-            listAdapter.replace(it)
-        })
+        viewModel.weather.observe(this, { listAdapter.replace(it) })
     }
 
     companion object {

@@ -10,7 +10,8 @@ data class CurrentWeatherResponse(
     @Json(name = "visibility") val visibility: Int,
     @Json(name = "wind") val wind: WindResponse,
     @Json(name = "dt") val date: Long,
-    @Json(name = "sys") val system: SystemResponse
+    @Json(name = "sys") val system: SystemResponse,
+    @Json(name = "timezone") val timezoneOffset: Int
 )
 
 data class WindResponse(

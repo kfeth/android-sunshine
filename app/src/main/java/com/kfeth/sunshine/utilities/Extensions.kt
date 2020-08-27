@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.kfeth.sunshine.R
+import java.time.Instant
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 import java.util.Locale
 import kotlin.math.roundToInt
 
@@ -24,6 +27,10 @@ fun String.sanitise(): String {
 
 fun Double.degreesFormat(): String {
     return "${roundToInt()}" + "°"
+}
+
+fun Long.toOffsetDateTime(offset: Int): OffsetDateTime {
+    return Instant.ofEpochSecond(this).atOffset(ZoneOffset.ofTotalSeconds(offset))
 }
 
 fun String.toWeatherIconDrawable(): Int {
