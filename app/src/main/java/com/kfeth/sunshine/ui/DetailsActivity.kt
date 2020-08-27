@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.data.WeatherLocation
+import com.kfeth.sunshine.adapters.CurrentWeatherAdapter
+import com.kfeth.sunshine.databinding.ActivityDetailsBinding
+import com.kfeth.sunshine.utilities.createBinding
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,17 +18,27 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
     private val viewModel: DetailsViewModel by viewModels()
+    private val listAdapter = CurrentWeatherAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_details)
+        val binding = createBinding<ActivityDetailsBinding>(R.layout.activity_details).apply {
+            lifecycleOwner = this@DetailsActivity
+            viewModel = this@DetailsActivity.viewModel
+        }
+
+        binding.currentWeatherRecyclerView.apply {
+            adapter = listAdapter
+            addItemDecoration(PageIndicatorDecoration())
+            PagerSnapHelper().attachToRecyclerView(this)
+        }
 
         viewModel.location.observe(this, {
             Log.d("DetailsActivity", "location: $it")
         })
 
         viewModel.weather.observe(this, {
-            Log.d("DetailsActivity", "weather: $it")
+            listAdapter.replace(it)
         })
     }
 

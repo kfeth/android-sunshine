@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipeRefresh"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.DetailsActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.kfeth.sunshine.viewmodels.DetailsViewModel" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.DetailsActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/currentWeatherRecyclerView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/current_weather_page_height"
-            android:background="@color/colorPrimary"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:itemCount="1"
-            tools:listitem="@layout/list_item_weather_summary"/>
+            android:layout_height="match_parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_4"
-            android:elevation="4dp"
-            android:src="@drawable/ic_favorite_disabled_white_32dp"
-            app:fabSize="normal"
-            app:layout_constraintBottom_toTopOf="@+id/forecastRecyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/forecastRecyclerView" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/currentWeatherRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/current_weather_page_height"
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="1"
+                tools:listitem="@layout/list_item_weather_summary" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/forecastRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:scrollbars="vertical"
-            android:scrollbarStyle="outsideOverlay"
-            android:paddingTop="@dimen/spacing_4"
-            android:background="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currentWeatherRecyclerView"
-            tools:listitem="@layout/list_item_forecast" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_4"
+                android:elevation="4dp"
+                android:src="@drawable/ic_favorite_disabled_white_32dp"
+                app:fabSize="normal"
+                app:layout_constraintBottom_toTopOf="@+id/forecastRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/forecastRecyclerView" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/forecastRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@android:color/white"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/spacing_4"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currentWeatherRecyclerView"
+                tools:listitem="@layout/list_item_forecast" />
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

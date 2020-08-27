@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="weather"
+            type="com.kfeth.sunshine.data.CurrentWeather" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/current_weather_page_height"
+        android:paddingStart="@dimen/spacing_4"
+        android:paddingTop="@dimen/spacing_4"
+        android:paddingEnd="@dimen/spacing_4"
+        tools:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/sunriseIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_3"
+            android:src="@drawable/ic_sunrise_100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sunriseTime"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_3"
+            android:text="Sunrishe"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/sunriseIcon"
+            app:layout_constraintStart_toStartOf="@+id/sunriseIcon"
+            app:layout_constraintTop_toBottomOf="@+id/sunriseIcon"
+            tools:text="05:00 AM" />
+
+        <ImageView
+            android:id="@+id/sunsetIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sunset_100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sunriseIcon" />
+
+        <TextView
+            android:id="@+id/sunsetTime"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_3"
+            android:text="Sunset"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/sunsetIcon"
+            app:layout_constraintStart_toStartOf="@+id/sunsetIcon"
+            app:layout_constraintTop_toBottomOf="@+id/sunsetIcon"
+            tools:text="09:43 PM" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
