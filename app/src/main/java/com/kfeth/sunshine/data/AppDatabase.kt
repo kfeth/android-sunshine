@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 
 @TypeConverters(DateConverter::class)
 @Database(
-    entities = [WeatherLocation::class, CurrentWeather::class],
+    entities = [WeatherLocation::class, CurrentWeather::class, ForecastWeather::class],
     version = 1,
     exportSchema = false
 )

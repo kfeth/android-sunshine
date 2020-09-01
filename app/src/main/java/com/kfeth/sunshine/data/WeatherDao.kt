@@ -18,9 +18,18 @@ interface WeatherDao {
     @Query("SELECT * FROM weather WHERE id = :weatherId")
     fun getCurrentWeather(weatherId: Int): Flow<CurrentWeather>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun bulkInsert(items: List<WeatherLocation>)
+    @Query("SELECT * FROM forecast WHERE weatherId = :weatherId")
+    fun getForecast(weatherId: Int): Flow<List<ForecastWeather>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(currentWeather: CurrentWeather)
+    suspend fun insertLocations(locations: List<WeatherLocation>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCurrentWeather(currentWeather: CurrentWeather)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertForecast(forecast: List<ForecastWeather>)
+
+    @Query("DELETE FROM forecast WHERE weatherId = :weatherId")
+    suspend fun deleteForecast(weatherId: Int)
 }
