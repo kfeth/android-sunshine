@@ -10,6 +10,8 @@ import com.kfeth.sunshine.BuildConfig.FLAG_ICON_URL
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.utilities.degreesFormat
 import com.kfeth.sunshine.utilities.toWeatherIconDrawable
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter.ofPattern
 
 @BindingAdapter("imageFromUrl")
 fun imageFromUrl(imageView: ImageView, url: String) {
@@ -33,4 +35,14 @@ fun weatherIcon(imageView: ImageView, iconId: String) {
 @BindingAdapter("formattedTemperature")
 fun formattedTemperature(textView: TextView, temperature: Double) {
     textView.text = temperature.degreesFormat()
+}
+
+@BindingAdapter("formattedDate")
+fun formattedDate(textView: TextView, date: OffsetDateTime) {
+    textView.text = date.format(ofPattern(textView.context.getString(R.string.date_format)))
+}
+
+@BindingAdapter("formattedTime")
+fun formattedTime(textView: TextView, date: OffsetDateTime) {
+    textView.text = date.format(ofPattern(textView.context.getString(R.string.time_format)))
 }

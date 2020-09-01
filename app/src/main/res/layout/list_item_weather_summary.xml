@@ -22,9 +22,9 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.formattedDate}"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@android:color/white"
+            app:formattedDate="@{weather.date}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -72,17 +72,30 @@
             tools:text="25°" />
 
         <TextView
-            android:id="@+id/lastUpdated"
+            android:id="@+id/lastUpdatedLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_2"
-            android:text="@{@string/updated(weather.formattedTime)}"
+            android:text="@string/last_update"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:textColor="@color/grey_light"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toStartOf="@+id/lastUpdated"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weatherIcon"
-            tools:text="updated: 02:55 pm" />
+            app:layout_constraintTop_toBottomOf="@+id/weatherIcon" />
+
+        <TextView
+            android:id="@+id/lastUpdated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@android:color/white"
+            app:formattedTime="@{weather.date}"
+            app:layout_constraintBottom_toBottomOf="@+id/lastUpdatedLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lastUpdatedLabel"
+            tools:text="02:55 pm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

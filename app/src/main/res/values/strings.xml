@@ -7,12 +7,19 @@
     <string name="search_hint"><![CDATA[Search towns & cities]]></string>
 
     <!-- Details Screen -->
-    <string name="cloud">Cloud:</string>
-    <string name="wind">Wind:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="wind">Wind speed:</string>
     <string name="humidity">Humidity:</string>
     <string name="visibility">Visibility:</string>
     <string name="max_wind_speed">Max wind speed:</string>
     <string name="sunrise_sunset">Sunrise / sunset:</string>
-    <string name="updated">last update %s</string>
+    <string name="last_update">last update</string>
+
+    <string name="pressure_format">%d hPa</string>
+    <string name="wind_speed_format">%.1f m/s</string>
+    <string name="humidity_format">%1$d%%</string>
+    <string name="visibility_format">%d km</string>
+    <string name="date_format">EEEE, d MMM</string>
+    <string name="time_format">h:mm a</string>
 
 </resources>

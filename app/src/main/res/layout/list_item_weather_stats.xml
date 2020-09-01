@@ -19,10 +19,10 @@
         tools:background="@color/colorPrimary">
 
         <TextView
-            android:id="@+id/cloudLabel"
+            android:id="@+id/pressureLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cloud"
+            android:text="@string/pressure"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,18 +31,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cloud"
+            android:id="@+id/pressure"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="Cloud"
+            android:text="@{@string/pressure_format(weather.pressure)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/cloudLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/pressureLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.85"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/cloudLabel"
-            tools:text="75%" />
+            app:layout_constraintTop_toTopOf="@+id/pressureLabel"
+            tools:text="1018 hPa" />
 
 
         <TextView
@@ -53,20 +53,20 @@
             android:text="@string/wind"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
-            app:layout_constraintStart_toStartOf="@+id/cloudLabel"
-            app:layout_constraintTop_toBottomOf="@+id/cloudLabel" />
+            app:layout_constraintStart_toStartOf="@+id/pressureLabel"
+            app:layout_constraintTop_toBottomOf="@+id/pressureLabel" />
 
         <TextView
             android:id="@+id/wind"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="Wind"
+            android:text="@{@string/wind_speed_format(weather.windSpeed)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/windLabel"
-            app:layout_constraintEnd_toEndOf="@+id/cloud"
+            app:layout_constraintEnd_toEndOf="@+id/pressure"
             app:layout_constraintTop_toTopOf="@+id/windLabel"
-            tools:text="19 km/h NE" />
+            tools:text="6.2 m/s" />
 
         <TextView
             android:id="@+id/humidityLabel"
@@ -76,18 +76,18 @@
             android:text="@string/humidity"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
-            app:layout_constraintStart_toStartOf="@+id/cloudLabel"
+            app:layout_constraintStart_toStartOf="@+id/pressureLabel"
             app:layout_constraintTop_toBottomOf="@+id/windLabel" />
 
         <TextView
             android:id="@+id/humidity"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="Humidity"
+            android:text="@{@string/humidity_format(weather.humidity)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/humidityLabel"
-            app:layout_constraintEnd_toEndOf="@+id/cloud"
+            app:layout_constraintEnd_toEndOf="@+id/pressure"
             app:layout_constraintTop_toTopOf="@+id/humidityLabel"
             tools:text="30%" />
 
@@ -99,18 +99,18 @@
             android:text="@string/visibility"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
-            app:layout_constraintStart_toStartOf="@+id/cloudLabel"
+            app:layout_constraintStart_toStartOf="@+id/pressureLabel"
             app:layout_constraintTop_toBottomOf="@+id/humidityLabel" />
 
         <TextView
-            android:id="@+id/visibilityKm"
+            android:id="@+id/visibility"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="Visibility"
+            android:text="@{@string/visibility_format(weather.visibility / 1000)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="@+id/visibilityLabel"
-            app:layout_constraintEnd_toEndOf="@+id/cloud"
+            app:layout_constraintEnd_toEndOf="@+id/pressure"
             app:layout_constraintTop_toTopOf="@+id/visibilityLabel"
             tools:text="10 km" />
 

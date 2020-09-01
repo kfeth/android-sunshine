@@ -1,11 +1,9 @@
 package com.kfeth.sunshine.data
 
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.kfeth.sunshine.utilities.toOffsetDateTime
 import java.time.OffsetDateTime
-import java.time.format.DateTimeFormatter.ofPattern
 import java.util.Locale
 
 @Entity(tableName = "weather")
@@ -21,8 +19,8 @@ data class CurrentWeather(
     val windSpeed: Double,
     val windDegrees: Int,
     val date: OffsetDateTime,
-    val sunrise: Long,
-    val sunset: Long
+    val sunrise: OffsetDateTime,
+    val sunset: OffsetDateTime
 ) {
     constructor(response: CurrentWeatherResponse) : this(
         id = response.id,
@@ -36,13 +34,7 @@ data class CurrentWeather(
         windSpeed = response.wind.speed,
         windDegrees = response.wind.degrees,
         date = response.date.toOffsetDateTime(response.timezoneOffset),
-        sunrise = response.system.sunrise,
-        sunset = response.system.sunset,
+        sunrise = response.system.sunrise.toOffsetDateTime(response.timezoneOffset),
+        sunset = response.system.sunset.toOffsetDateTime(response.timezoneOffset)
     )
-
-    @Ignore
-    val formattedDate: String = date.format(ofPattern("EEEE, d MMM"))
-
-    @Ignore
-    val formattedTime: String = date.format(ofPattern("h:mm a"))
 }
