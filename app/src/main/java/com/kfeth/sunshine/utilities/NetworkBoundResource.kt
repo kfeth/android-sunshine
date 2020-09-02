@@ -1,9 +1,11 @@
 package com.kfeth.sunshine.utilities
 
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
 
@@ -33,4 +35,4 @@ fun <ResultType, RequestType> networkBoundResource(
             query().map { Resource.success(it) }
         }
         emitAll(flow)
-    }
+    }.flowOn(Dispatchers.IO)

@@ -18,7 +18,7 @@ class WeatherRepository @Inject constructor(
     private val geocodeService: GeocodeService
 ) {
 
-    fun searchWeatherLocations(query: String): Flow<Resource<List<WeatherLocation>>> = networkBoundResource(
+    fun searchWeatherLocations(query: String) = networkBoundResource(
         shouldFetch = { query.length >= 3 },
         query = { weatherDao.searchLocations(query) },
         fetch = {
@@ -26,6 +26,7 @@ class WeatherRepository @Inject constructor(
             weatherService.searchLocations(query)
         },
         saveFetchResult = { searchResponse ->
+            // TODO Refactor logic for creating entity
             val locationsList = searchResponse.list.map {
                 val geoCodeResponse = reverseGeocode(it.coordinates.latitude, it.coordinates.longitude)
                 WeatherLocation(query, it, geoCodeResponse)
@@ -34,8 +35,7 @@ class WeatherRepository @Inject constructor(
         }
     )
 
-    fun getWeatherDetails(weatherId: Int, lat: Double, lon: Double): Flow<Resource<CurrentWeather>> = networkBoundResource(
-        shouldFetch = { true },
+    fun getWeatherDetails(weatherId: Int, lat: Double, lon: Double) = networkBoundResource(
         query = { weatherDao.getCurrentWeather(weatherId) },
         fetch = { weatherService.weatherDetails(lat, lon) },
         saveFetchResult = {
@@ -45,13 +45,9 @@ class WeatherRepository @Inject constructor(
         }
     )
 
-    fun getWeatherLocation(weatherId: Int): Flow<WeatherLocation> {
-        return weatherDao.getWeatherLocation(weatherId)
-    }
+    fun getWeatherLocation(weatherId: Int) = weatherDao.getWeatherLocation(weatherId)
 
-    fun getForecast(weatherId: Int): Flow<List<ForecastWeather>> {
-        return weatherDao.getForecast(weatherId)
-    }
+    fun getForecast(weatherId: Int) = weatherDao.getForecast(weatherId)
 
     private suspend fun reverseGeocode(latitude: Double, longitude: Double): GeocodeResponse {
         val url = REVERSE_GEOCODE_API_URL.format(latitude, longitude)

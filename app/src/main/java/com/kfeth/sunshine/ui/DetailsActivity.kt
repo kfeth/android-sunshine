@@ -13,11 +13,13 @@ import com.kfeth.sunshine.databinding.ActivityDetailsBinding
 import com.kfeth.sunshine.utilities.createBinding
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_details.swipeRefresh
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
     private val viewModel: DetailsViewModel by viewModels()
+    // TODO Inject adapters?
     private val currentWeatherAdapter = CurrentWeatherAdapter()
     private val forecastAdapter = ForecastAdapter()
 
@@ -35,8 +37,12 @@ class DetailsActivity : AppCompatActivity() {
                 PagerSnapHelper().attachToRecyclerView(this)
             }
         }
-        viewModel.currentWeather.observe(this, { currentWeatherAdapter.replace(it) })
-        viewModel.forecast.observe(this, { forecastAdapter.submitList(it) })
+        viewModel.apply {
+            currentWeather.observe(this@DetailsActivity, { currentWeatherAdapter.replace(it) })
+            forecast.observe(this@DetailsActivity, { forecastAdapter.submitList(it) })
+            isLoading.observe(this@DetailsActivity, { swipeRefresh.isRefreshing = it })
+            title.observe(this@DetailsActivity, { supportActionBar?.title = it })
+        }
     }
 
     companion object {
