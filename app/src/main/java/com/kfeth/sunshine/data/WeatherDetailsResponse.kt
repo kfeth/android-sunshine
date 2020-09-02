@@ -2,6 +2,7 @@ package com.kfeth.sunshine.data
 
 import com.kfeth.sunshine.utilities.toOffsetDateTime
 import com.squareup.moshi.Json
+import java.util.Locale
 
 data class WeatherDetailsResponse(
     @Json(name = "timezone_offset") val timezoneOffset: Int,
@@ -43,10 +44,11 @@ fun WeatherDetailsResponse.asCurrentWeather(weatherId: Int): CurrentWeather {
     return CurrentWeather(
         id = weatherId,
         iconId = current.conditions.first().iconId,
-        description = current.conditions.first().description,
+        description = current.conditions.first().description.capitalize(Locale.getDefault()),
         temperature = current.temperature,
         pressure = current.pressure,
         humidity = current.humidity,
+        uvIndex = current.uvIndex,
         visibility = current.visibility,
         windSpeed = current.windSpeed,
         date = current.date.toOffsetDateTime(timezoneOffset),
@@ -60,12 +62,13 @@ fun WeatherDetailsResponse.asForecast(weatherId: Int): List<ForecastWeather> {
         ForecastWeather(
             weatherId = weatherId,
             iconId = it.conditions.first().iconId,
-            description = it.conditions.first().description,
+            description = it.conditions.first().description.capitalize(Locale.getDefault()),
             minTemperature = it.temperature.min,
             maxTemperature = it.temperature.max,
             pressure = it.pressure,
             humidity = it.humidity,
             windSpeed = it.windSpeed,
+            uvIndex = it.uvIndex,
             date = it.date.toOffsetDateTime(timezoneOffset),
             sunrise = it.sunrise.toOffsetDateTime(timezoneOffset),
             sunset = it.sunset.toOffsetDateTime(timezoneOffset)

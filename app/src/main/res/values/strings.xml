@@ -11,15 +11,17 @@
     <string name="wind">Wind speed:</string>
     <string name="humidity">Humidity:</string>
     <string name="visibility">Visibility:</string>
-    <string name="max_wind_speed">Max wind speed:</string>
-    <string name="sunrise_sunset">Sunrise / sunset:</string>
+    <string name="uv_index">UV index:</string>
+    <string name="daylight_hours">Daylight hours:</string>
     <string name="last_update">last update</string>
 
-    <string name="pressure_format">%d hPa</string>
+    <string name="temperature_format">%.0f°</string>
     <string name="wind_speed_format">%.1f m/s</string>
     <string name="humidity_format">%1$d%%</string>
     <string name="visibility_format">%d km</string>
+    <string name="daylight_hours_format">%1$s / %2$s</string>
     <string name="date_format">EEEE, d MMM</string>
     <string name="time_format">h:mm a</string>
+    <string name="day_format">EEEE</string>
 
 </resources>

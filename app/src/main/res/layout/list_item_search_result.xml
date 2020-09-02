@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/spacing_1"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:formattedTemperature="@{weatherLocation.temperature}"
+            android:text="@{@string/temperature_format(weatherLocation.temperature)}"
             app:layout_constraintBottom_toBottomOf="@+id/weatherIcon"
             app:layout_constraintEnd_toStartOf="@+id/weatherIcon"
             app:layout_constraintTop_toTopOf="@+id/weatherIcon"

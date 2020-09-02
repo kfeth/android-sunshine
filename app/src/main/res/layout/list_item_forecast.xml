@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
+
         <variable
             name="weather"
-            type="com.kfeth.sunshine.data.CurrentWeather" />
+            type="com.kfeth.sunshine.data.ForecastWeather" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
+        android:onClick="@{clickListener}"
         android:paddingStart="@dimen/spacing_4"
-        android:paddingEnd="@dimen/spacing_4"
         android:paddingTop="@dimen/spacing_4"
-        android:onClick="@{clickListener}">
+        android:paddingEnd="@dimen/spacing_4">
 
         <ImageView
             android:id="@+id/weatherIcon"
@@ -28,7 +29,8 @@
             android:layout_height="45dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_weather_01n" />
+            app:weatherIcon="@{weather.iconId}"
+            tools:srcCompat="@drawable/ic_weather_02d" />
 
         <TextView
             android:id="@+id/day"
@@ -37,9 +39,10 @@
             android:layout_marginStart="@dimen/spacing_4"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Day"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintEnd_toStartOf="@+id/temperature"
+            app:date="@{weather.date}"
+            app:datePattern="@{@string/day_format}"
+            app:layout_constraintEnd_toStartOf="@+id/minTemp"
             app:layout_constraintStart_toEndOf="@+id/weatherIcon"
             app:layout_constraintTop_toTopOf="@+id/weatherIcon"
             tools:text="Monday" />
@@ -51,23 +54,37 @@
             android:layout_marginStart="@dimen/spacing_4"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{weather.description}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:text="Desc"
-            app:layout_constraintEnd_toStartOf="@+id/temperature"
+            app:layout_constraintEnd_toStartOf="@+id/minTemp"
             app:layout_constraintStart_toEndOf="@+id/weatherIcon"
             app:layout_constraintTop_toBottomOf="@+id/day"
             tools:text="Chance of rain" />
 
         <TextView
-            android:id="@+id/temperature"
+            android:id="@+id/minTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="7°"
-            android:text="Min"
+            android:layout_marginEnd="@dimen/spacing_4"
+            android:text="@{@string/temperature_format(weather.minTemperature)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintBottom_toBottomOf="@id/description"
+            android:textColor="@color/grey"
+            app:layout_constraintBottom_toBottomOf="@+id/description"
+            app:layout_constraintEnd_toStartOf="@+id/maxTemp"
+            app:layout_constraintTop_toTopOf="@+id/day"
+            tools:text="7°" />
+
+        <TextView
+            android:id="@+id/maxTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/temperature_format(weather.maxTemperature)}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/minTemp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/day" />
+            app:layout_constraintTop_toTopOf="@+id/minTemp"
+            tools:text="16°" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/extraDetailsContainer"
@@ -75,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_3"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/temperature"
+            app:layout_constraintEnd_toEndOf="@+id/maxTemp"
             app:layout_constraintStart_toStartOf="@+id/description"
             app:layout_constraintTop_toBottomOf="@+id/description">
 
@@ -84,7 +101,7 @@
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/max_wind_speed"
+                android:text="@string/wind"
                 android:textColor="@color/grey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -94,34 +111,34 @@
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="19 km/h"
-                android:text="100kph"
+                android:text="@{@string/wind_speed_format(weather.windSpeed)}"
                 android:textColor="@color/grey"
                 app:layout_constraintBottom_toBottomOf="@+id/windLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/windLabel" />
+                app:layout_constraintTop_toTopOf="@+id/windLabel"
+                tools:text="19 km/h" />
 
             <TextView
-                android:id="@+id/visibilityLabel"
+                android:id="@+id/uvIndexLabel"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/visibility"
+                android:text="@string/uv_index"
                 android:textColor="@color/grey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/windLabel" />
 
             <TextView
-                android:id="@+id/visibilityKm"
+                android:id="@+id/uvIndex"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="10 km"
-                android:text="200kph"
+                android:text="@{weather.uvIndex + ``}"
                 android:textColor="@color/grey"
-                app:layout_constraintBottom_toBottomOf="@+id/visibilityLabel"
+                app:layout_constraintBottom_toBottomOf="@+id/uvIndexLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/visibilityLabel" />
+                app:layout_constraintTop_toTopOf="@+id/uvIndexLabel"
+                tools:text="4.62" />
 
             <TextView
                 android:id="@+id/humidityLabel"
@@ -131,41 +148,41 @@
                 android:text="@string/humidity"
                 android:textColor="@color/grey"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/visibilityLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/uvIndexLabel" />
 
             <TextView
                 android:id="@+id/humidity"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="60%"
-                android:text="100%"
+                android:text="@{@string/humidity_format(weather.humidity)}"
                 android:textColor="@color/grey"
                 app:layout_constraintBottom_toBottomOf="@+id/humidityLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/humidityLabel" />
+                app:layout_constraintTop_toTopOf="@+id/humidityLabel"
+                tools:text="60%" />
 
             <TextView
-                android:id="@+id/sunlightLabel"
+                android:id="@+id/daylightHoursLabel"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sunrise_sunset"
+                android:text="@string/daylight_hours"
                 android:textColor="@color/grey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/humidityLabel" />
 
             <TextView
-                android:id="@+id/sunlight"
+                android:id="@+id/daylightHours"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="07:30 AM / 09:35 PM"
                 android:textColor="@color/grey"
-                android:text='@{weather.sunrise + " / " + weather.sunset}'
-                app:layout_constraintBottom_toBottomOf="@+id/sunlightLabel"
+                app:toDaylightHours="@{weather}"
+                app:layout_constraintBottom_toBottomOf="@+id/daylightHoursLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/sunlightLabel" />
+                app:layout_constraintTop_toTopOf="@+id/daylightHoursLabel"
+                tools:text="07:30 AM / 09:35 PM" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

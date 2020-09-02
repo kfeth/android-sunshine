@@ -8,7 +8,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.kfeth.sunshine.BuildConfig.FLAG_ICON_URL
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.utilities.degreesFormat
+import com.kfeth.sunshine.data.ForecastWeather
 import com.kfeth.sunshine.utilities.toWeatherIconDrawable
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter.ofPattern
@@ -32,17 +32,15 @@ fun weatherIcon(imageView: ImageView, iconId: String) {
     imageView.setImageResource(iconId.toWeatherIconDrawable())
 }
 
-@BindingAdapter("formattedTemperature")
-fun formattedTemperature(textView: TextView, temperature: Double) {
-    textView.text = temperature.degreesFormat()
+@BindingAdapter("date", "datePattern")
+fun toFormattedDate(textView: TextView, date: OffsetDateTime, datePattern: String) {
+    textView.text = date.format(ofPattern(datePattern))
 }
 
-@BindingAdapter("formattedDate")
-fun formattedDate(textView: TextView, date: OffsetDateTime) {
-    textView.text = date.format(ofPattern(textView.context.getString(R.string.date_format)))
-}
-
-@BindingAdapter("formattedTime")
-fun formattedTime(textView: TextView, date: OffsetDateTime) {
-    textView.text = date.format(ofPattern(textView.context.getString(R.string.time_format)))
+@BindingAdapter("toDaylightHours")
+fun toDaylightHours(textView: TextView, forecast: ForecastWeather) {
+    val timeFormat = textView.context.resources.getString(R.string.time_format)
+    val sunrise = forecast.sunrise.format(ofPattern(timeFormat))
+    val sunset = forecast.sunset.format(ofPattern(timeFormat))
+    textView.text = String.format(textView.context.resources.getString(R.string.daylight_hours_format), sunrise, sunset)
 }

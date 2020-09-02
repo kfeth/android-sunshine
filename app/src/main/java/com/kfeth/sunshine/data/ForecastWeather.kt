@@ -14,6 +14,7 @@ data class ForecastWeather(
     val pressure: Int,
     val humidity: Int,
     val windSpeed: Double,
+    val uvIndex: Double,
     val date: OffsetDateTime,
     val sunrise: OffsetDateTime,
     val sunset: OffsetDateTime

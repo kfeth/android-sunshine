@@ -11,7 +11,6 @@ import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.Locale
-import kotlin.math.roundToInt
 
 fun <T : ViewDataBinding> ViewGroup.createBinding(@LayoutRes layoutRes: Int): T {
     return DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
@@ -23,10 +22,6 @@ fun <T : ViewDataBinding> AppCompatActivity.createBinding(@LayoutRes layoutRes: 
 
 fun String.sanitise(): String {
     return toLowerCase(Locale.getDefault()).trim()
-}
-
-fun Double.degreesFormat(): String {
-    return "${roundToInt()}" + "°"
 }
 
 fun Long.toOffsetDateTime(offset: Int): OffsetDateTime {

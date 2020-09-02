@@ -3,12 +3,12 @@ package com.kfeth.sunshine.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.adapters.CurrentWeatherAdapter
+import com.kfeth.sunshine.adapters.ForecastAdapter
 import com.kfeth.sunshine.databinding.ActivityDetailsBinding
 import com.kfeth.sunshine.utilities.createBinding
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
@@ -18,25 +18,25 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
     private val viewModel: DetailsViewModel by viewModels()
-    private val listAdapter = CurrentWeatherAdapter()
+    private val currentWeatherAdapter = CurrentWeatherAdapter()
+    private val forecastAdapter = ForecastAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = createBinding<ActivityDetailsBinding>(R.layout.activity_details).apply {
+
+        createBinding<ActivityDetailsBinding>(R.layout.activity_details).apply {
             lifecycleOwner = this@DetailsActivity
             viewModel = this@DetailsActivity.viewModel
-        }
+            forecastRecyclerView.apply { adapter = forecastAdapter }
 
-        binding.currentWeatherRecyclerView.apply {
-            adapter = listAdapter
-            addItemDecoration(PageIndicatorDecoration())
-            PagerSnapHelper().attachToRecyclerView(this)
+            currentWeatherRecyclerView.apply {
+                adapter = currentWeatherAdapter
+                addItemDecoration(PageIndicatorDecoration())
+                PagerSnapHelper().attachToRecyclerView(this)
+            }
         }
-
-        viewModel.currentWeather.observe(this, { listAdapter.replace(it) })
-        viewModel.forecast.observe(this, {
-            Log.d("DetailsActivity", "Observed: ${it.size}")
-        })
+        viewModel.currentWeather.observe(this, { currentWeatherAdapter.replace(it) })
+        viewModel.forecast.observe(this, { forecastAdapter.submitList(it) })
     }
 
     companion object {

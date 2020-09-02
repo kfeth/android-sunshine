@@ -12,6 +12,7 @@ data class CurrentWeather(
     val temperature: Double,
     val pressure: Int,
     val humidity: Int,
+    val uvIndex: Double,
     val visibility: Int,
     val windSpeed: Double,
     val date: OffsetDateTime,
