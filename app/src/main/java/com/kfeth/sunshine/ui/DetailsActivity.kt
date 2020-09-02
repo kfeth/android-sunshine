@@ -13,7 +13,6 @@ import com.kfeth.sunshine.databinding.ActivityDetailsBinding
 import com.kfeth.sunshine.utilities.createBinding
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_details.swipeRefresh
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
@@ -29,7 +28,7 @@ class DetailsActivity : AppCompatActivity() {
         createBinding<ActivityDetailsBinding>(R.layout.activity_details).apply {
             lifecycleOwner = this@DetailsActivity
             viewModel = this@DetailsActivity.viewModel
-            forecastRecyclerView.apply { adapter = forecastAdapter }
+            forecastRecyclerView.adapter = forecastAdapter
 
             currentWeatherRecyclerView.apply {
                 adapter = currentWeatherAdapter
@@ -40,7 +39,6 @@ class DetailsActivity : AppCompatActivity() {
         viewModel.apply {
             currentWeather.observe(this@DetailsActivity, { currentWeatherAdapter.replace(it) })
             forecast.observe(this@DetailsActivity, { forecastAdapter.submitList(it) })
-            isLoading.observe(this@DetailsActivity, { swipeRefresh.isRefreshing = it })
             title.observe(this@DetailsActivity, { supportActionBar?.title = it })
         }
     }

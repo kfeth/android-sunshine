@@ -35,4 +35,9 @@ class DetailsViewModel @ViewModelInject constructor(
     val isLoading = resource.map { it.isLoading() }
     val currentWeather = resource.map { it.data }
     val title = location.map { it.name }
+
+    fun onPullToRefresh() {
+        val id = weatherId.value
+        weatherId.value = id
+    }
 }
