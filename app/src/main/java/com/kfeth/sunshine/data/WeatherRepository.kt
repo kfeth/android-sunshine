@@ -8,6 +8,7 @@ import com.kfeth.sunshine.utilities.Resource
 import com.kfeth.sunshine.utilities.networkBoundResource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -52,5 +53,17 @@ class WeatherRepository @Inject constructor(
     private suspend fun reverseGeocode(latitude: Double, longitude: Double): GeocodeResponse {
         val url = REVERSE_GEOCODE_API_URL.format(latitude, longitude)
         return geocodeService.reverseGeocode(url).body()!!
+    }
+
+    suspend fun toggleFavourite(weatherId: Int) {
+        if (weatherDao.isFavourite(weatherId).first()) {
+            weatherDao.removeFavourite(weatherId)
+        } else {
+            weatherDao.addFavourite(Favourites(weatherId))
+        }
+    }
+
+    fun isFavourite(weatherId: Int): Flow<Boolean> {
+        return weatherDao.isFavourite(weatherId)
     }
 }

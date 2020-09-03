@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import com.kfeth.sunshine.data.WeatherRepository
 import com.kfeth.sunshine.ui.DetailsActivity.Companion.EXTRA_KEY_WEATHER_ID
 import com.kfeth.sunshine.utilities.isLoading
+import kotlinx.coroutines.launch
 
 class DetailsViewModel @ViewModelInject constructor(
     private val repository: WeatherRepository,
@@ -29,8 +31,16 @@ class DetailsViewModel @ViewModelInject constructor(
     private val _forecast = weatherId.switchMap {
         repository.getForecast(it).asLiveData()
     }
+
+    private val _isFavourite = weatherId.switchMap {
+        repository.isFavourite(it).asLiveData()
+    }
+
     val forecast
         get() = _forecast
+
+    val isFavourite
+        get() = _isFavourite
 
     val isLoading = resource.map { it.isLoading() }
     val currentWeather = resource.map { it.data }
@@ -39,5 +49,11 @@ class DetailsViewModel @ViewModelInject constructor(
     fun onPullToRefresh() {
         val id = weatherId.value
         weatherId.value = id
+    }
+
+    fun toggleFavourite() {
+        viewModelScope.launch {
+            repository.toggleFavourite(weatherId.value ?: 0)
+        }
     }
 }

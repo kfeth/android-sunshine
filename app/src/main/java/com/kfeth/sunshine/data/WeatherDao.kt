@@ -32,4 +32,13 @@ interface WeatherDao {
 
     @Query("DELETE FROM forecast WHERE weatherId = :weatherId")
     suspend fun deleteForecast(weatherId: Int)
+
+    @Query("SELECT EXISTS(SELECT * FROM favourites WHERE weatherId = :weatherId)")
+    fun isFavourite(weatherId: Int?): Flow<Boolean>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addFavourite(favourite: Favourites)
+
+    @Query("DELETE FROM favourites WHERE weatherId = :weatherId")
+    suspend fun removeFavourite(weatherId: Int)
 }

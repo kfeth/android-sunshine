@@ -15,8 +15,8 @@
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:refreshing="@{viewModel.isLoading()}"
         app:onRefreshListener="@{() -> viewModel.onPullToRefresh()}"
+        app:refreshing="@{viewModel.isLoading()}"
         tools:context=".ui.DetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,18 +34,6 @@
                 tools:itemCount="1"
                 tools:listitem="@layout/list_item_weather_summary" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fabBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_4"
-                android:elevation="4dp"
-                android:src="@drawable/ic_favorite_disabled_white_32dp"
-                app:fabSize="normal"
-                app:layout_constraintBottom_toTopOf="@+id/forecastRecyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/forecastRecyclerView" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/forecastRecyclerView"
                 android:layout_width="match_parent"
@@ -60,6 +48,21 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/currentWeatherRecyclerView"
                 tools:listitem="@layout/list_item_forecast" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_4"
+                android:elevation="4dp"
+                android:enabled="@{!viewModel.isLoading()}"
+                android:onClick="@{(v) -> viewModel.toggleFavourite()}"
+                android:src="@{viewModel.isFavourite() ? @drawable/ic_favorite_enabled_white_32dp : @drawable/ic_favorite_disabled_white_32dp}"
+                app:fabSize="normal"
+                app:layout_constraintBottom_toTopOf="@+id/forecastRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/forecastRecyclerView"
+                tools:src="@drawable/ic_favorite_disabled_white_32dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
