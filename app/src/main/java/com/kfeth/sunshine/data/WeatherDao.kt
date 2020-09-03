@@ -42,6 +42,6 @@ interface WeatherDao {
     @Query("DELETE FROM favourites WHERE weatherId = :weatherId")
     suspend fun removeFavourite(weatherId: Int)
 
-    @Query("SELECT * FROM weather WHERE id IN (SELECT weatherId FROM favourites)")
-    fun getFavourites(): Flow<List<CurrentWeather>>
+    @Query("SELECT l.*, w.* FROM weather AS w INNER JOIN locations AS l ON w.id = l.id INNER JOIN favourites AS f ON w.id = f.weatherId")
+    fun getFavourites(): Flow<List<FavouriteItem>>
 }

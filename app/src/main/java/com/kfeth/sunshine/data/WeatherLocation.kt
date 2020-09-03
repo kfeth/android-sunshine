@@ -9,8 +9,6 @@ data class WeatherLocation(
     val name: String,
     val latitude: Double,
     val longitude: Double,
-    val temperature: Double,
-    val iconId: String,
     val queryString: String,
     val addressString: String,
     val countryCode: String,
@@ -20,8 +18,6 @@ data class WeatherLocation(
         name = location.name,
         latitude = location.coordinates.latitude,
         longitude = location.coordinates.longitude,
-        temperature = location.environment.temperature,
-        iconId = location.conditions.first().iconId,
         queryString = query,
         addressString = geo.addressString,
         countryCode = geo.countryCode

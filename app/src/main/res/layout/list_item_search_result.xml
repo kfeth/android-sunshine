@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:onClick="@{clickListener}"
+        android:layout_marginEnd="@dimen/spacing_3"
         android:paddingTop="@dimen/spacing_3">
 
         <ImageView
@@ -39,7 +40,7 @@
             android:maxLines="1"
             android:text="@{weatherLocation.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
-            app:layout_constraintEnd_toStartOf="@+id/temperature"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/flagIcon"
             app:layout_constraintTop_toTopOf="@+id/flagIcon"
             tools:text="@tools:sample/cities" />
@@ -52,33 +53,34 @@
             android:maxLines="1"
             android:text="@{weatherLocation.addressString}"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            app:layout_constraintEnd_toStartOf="@+id/temperature"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/flagIcon"
             app:layout_constraintTop_toBottomOf="@+id/title"
             tools:text="@tools:sample/cities" />
 
-        <ImageView
-            android:id="@+id/weatherIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="@dimen/spacing_3"
-            app:layout_constraintBottom_toBottomOf="@+id/subtitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/title"
-            app:weatherIcon="@{weatherLocation.iconId}"
-            tools:srcCompat="@drawable/ic_weather_02d" />
+<!--        TODO Revisit if deciding to show weather in search results-->
+<!--        <ImageView-->
+<!--            android:id="@+id/weatherIcon"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_margin="@dimen/spacing_3"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/subtitle"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/title"-->
+<!--            app:weatherIcon="@{weatherLocation.iconId}"-->
+<!--            tools:srcCompat="@drawable/ic_weather_02d" />-->
 
-        <TextView
-            android:id="@+id/temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:text="@{@string/temperature_format(weatherLocation.temperature)}"
-            app:layout_constraintBottom_toBottomOf="@+id/weatherIcon"
-            app:layout_constraintEnd_toStartOf="@+id/weatherIcon"
-            app:layout_constraintTop_toTopOf="@+id/weatherIcon"
-            tools:text="15°" />
+<!--        <TextView-->
+<!--            android:id="@+id/temperature"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="@dimen/spacing_1"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Caption"-->
+<!--            android:text="@{@string/temperature_format(weatherLocation.temperature)}"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/weatherIcon"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/weatherIcon"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/weatherIcon"-->
+<!--            tools:text="15°" />-->
 
         <View
             android:id="@+id/divider"

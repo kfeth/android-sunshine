@@ -10,8 +10,8 @@
             type="android.view.View.OnClickListener" />
 
         <variable
-            name="weather"
-            type="com.kfeth.sunshine.data.CurrentWeather" />
+            name="favourite"
+            type="com.kfeth.sunshine.data.FavouriteItem" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/mapImageView"
+                android:id="@+id/mapImage"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/mapImageView">
+                app:layout_constraintTop_toTopOf="@+id/mapImage">
 
                 <TextView
                     android:id="@+id/locationTitle"
@@ -50,7 +50,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_1"
-                    android:text="Display title"
+                    android:text="@{favourite.name}"
                     android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/ic_launcher"
-                    android:text="Subtitle"
+                    android:text="@{favourite.addressString}"
                     android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/locationTitle"
