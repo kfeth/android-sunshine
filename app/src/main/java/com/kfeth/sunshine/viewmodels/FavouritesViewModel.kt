@@ -3,15 +3,19 @@ package com.kfeth.sunshine.viewmodels
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.kfeth.sunshine.data.WeatherRepository
 
 class FavouritesViewModel @ViewModelInject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
-    private val _clickSearchEvent = MutableLiveData(false)
+    private val _favouritesList = repository.getFavourites().asLiveData()
+    val favouritesList
+        get() = _favouritesList
 
-    val clickSearchEvent: MutableLiveData<Boolean>
+    private val _clickSearchEvent = MutableLiveData(false)
+    val clickSearchEvent
         get() = _clickSearchEvent
 
     fun onClickSearch() {

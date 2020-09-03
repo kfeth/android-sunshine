@@ -4,7 +4,6 @@ import com.kfeth.sunshine.BuildConfig.REVERSE_GEOCODE_API_URL
 import com.kfeth.sunshine.api.GeocodeService
 import com.kfeth.sunshine.api.WeatherService
 import com.kfeth.sunshine.utilities.DEBOUNCE_DELAY_MILLIS
-import com.kfeth.sunshine.utilities.Resource
 import com.kfeth.sunshine.utilities.networkBoundResource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -49,6 +48,8 @@ class WeatherRepository @Inject constructor(
     fun getWeatherLocation(weatherId: Int) = weatherDao.getWeatherLocation(weatherId)
 
     fun getForecast(weatherId: Int) = weatherDao.getForecast(weatherId)
+    
+    fun getFavourites() = weatherDao.getFavourites()
 
     private suspend fun reverseGeocode(latitude: Double, longitude: Double): GeocodeResponse {
         val url = REVERSE_GEOCODE_API_URL.format(latitude, longitude)
