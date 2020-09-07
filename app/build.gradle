@@ -30,6 +30,7 @@ android {
             it.buildConfigField "String", "WEATHER_API_KEY", '"957596741872ad1eee58bb699c49294e"'
             it.buildConfigField "String", "REVERSE_GEOCODE_API_URL", '"https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=%s&longitude=%s&localityLanguage=en"'
             it.buildConfigField "String", "FLAG_ICON_URL", '"https://www.countryflags.io/%s/flat/64.png"'
+            it.buildConfigField "String", "STATIC_MAP_URL", '"https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/%s,%s,9,0/300x200@2x?access_token=pk.eyJ1Ijoia2ZldGgiLCJhIjoiY2tlbmE0dnVmMGN3YzJxbndmcnY2OTNxaiJ9.kJ5CXCfUlJBbdYJ25i2FMA"'
         }
     }
 

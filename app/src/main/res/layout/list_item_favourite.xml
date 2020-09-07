@@ -32,6 +32,7 @@
                 android:id="@+id/mapImage"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
+                app:imageFromUrl="@{favourite.staticMapUrl}"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,12 +48,12 @@
                 <TextView
                     android:id="@+id/locationTitle"
                     style="@style/TextAppearance.AppCompat.Body2"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_1"
+                    android:background="@color/background_dimmed_light"
+                    android:padding="@dimen/spacing_1"
                     android:text="@{favourite.name}"
                     android:textColor="@android:color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Dublin" />
@@ -60,15 +61,46 @@
                 <TextView
                     android:id="@+id/locationSubtitle"
                     style="@style/TextAppearance.AppCompat.Caption"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/background_dimmed_light"
+                    android:padding="@dimen/spacing_1"
                     android:src="@mipmap/ic_launcher"
                     android:text="@{favourite.addressString}"
                     android:textColor="@android:color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/locationTitle"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/locationTitle"
                     tools:text="Dublin, Ireland" />
+
+                <ImageView
+                    android:id="@+id/flagIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:flagIconFromCountryCode="@{favourite.countryCode}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:srcCompat="@drawable/ic_location_24dp" />
+
+                <ImageView
+                    android:id="@+id/weatherIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="@dimen/spacing_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:weatherIcon="@{favourite.iconId}"
+                    tools:srcCompat="@drawable/ic_weather_02d" />
+
+                <TextView
+                    android:id="@+id/temperature"
+                    style="@style/TextAppearance.AppCompat.Display1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/temperature_format(favourite.temperature)}"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="17°" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
