@@ -10,6 +10,7 @@ import com.kfeth.sunshine.databinding.ActivityFavouritesBinding
 import com.kfeth.sunshine.utilities.createBinding
 import com.kfeth.sunshine.viewmodels.FavouritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_favourites.fab
 
 @AndroidEntryPoint
 class FavouritesActivity : AppCompatActivity() {
@@ -28,13 +29,7 @@ class FavouritesActivity : AppCompatActivity() {
             recyclerView.adapter = listAdapter
         }
 
-        viewModel.favouritesList.observe(this, { listAdapter.submitList(it) })
-
-        viewModel.clickSearchEvent.observe(this, {
-            if (it) {
-                startActivity(Intent(this, SearchActivity::class.java))
-                viewModel.onClickSearchComplete()
-            }
-        })
+        viewModel.favourites.observe(this, { listAdapter.submitList(it) })
+        fab.setOnClickListener { startActivity(Intent(this, SearchActivity::class.java)) }
     }
 }

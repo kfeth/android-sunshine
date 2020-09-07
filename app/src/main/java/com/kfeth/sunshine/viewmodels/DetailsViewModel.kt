@@ -24,8 +24,8 @@ class DetailsViewModel @ViewModelInject constructor(
         repository.getWeatherLocation(it).asLiveData()
     }
 
-    private val resource = location.switchMap {
-        repository.getWeatherDetails(it.id, it.latitude, it.longitude).asLiveData()
+    private val resource = weatherId.switchMap {
+        repository.getWeatherDetails(it).asLiveData()
     }
 
     private val _forecast = weatherId.switchMap {

@@ -35,13 +35,27 @@ class WeatherRepository @Inject constructor(
         }
     )
 
-    fun getWeatherDetails(weatherId: Int, lat: Double, lon: Double) = networkBoundResource(
+    fun getWeatherDetails(weatherId: Int) = networkBoundResource(
         query = { weatherDao.getCurrentWeather(weatherId) },
-        fetch = { weatherService.weatherDetails(lat, lon) },
+        fetch = {
+            val location = weatherDao.getWeatherLocation(weatherId).first()
+            weatherService.weatherForLocation(location.latitude, location.longitude)
+        },
         saveFetchResult = {
             weatherDao.deleteForecast(weatherId)
             weatherDao.insertCurrentWeather(it.asCurrentWeather(weatherId))
             weatherDao.insertForecast(it.asForecast(weatherId))
+        }
+    )
+
+    fun getWeatherForFavourites() = networkBoundResource(
+        query = { getFavourites() },
+        fetch = {
+            val favouriteIds = getFavourites().first().map { it.id }
+            weatherService.weatherForIds(favouriteIds.joinToString(","))
+        },
+        saveFetchResult = {
+
         }
     )
 
@@ -57,7 +71,7 @@ class WeatherRepository @Inject constructor(
     }
 
     suspend fun toggleFavourite(weatherId: Int) {
-        if (weatherDao.isFavourite(weatherId).first()) {
+        if (isFavourite(weatherId).first()) {
             weatherDao.removeFavourite(weatherId)
         } else {
             weatherDao.addFavourite(Favourites(weatherId))
