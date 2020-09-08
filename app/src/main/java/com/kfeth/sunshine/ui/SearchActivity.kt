@@ -10,6 +10,7 @@ import com.kfeth.sunshine.databinding.ActivitySearchBinding
 import com.kfeth.sunshine.utilities.createBinding
 import com.kfeth.sunshine.viewmodels.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.view_search_bar.backBtn
 import kotlinx.android.synthetic.main.view_search_bar.editText
 
 @AndroidEntryPoint
@@ -28,6 +29,7 @@ class SearchActivity : AppCompatActivity() {
             recyclerView.adapter = listAdapter
         }
 
+        backBtn.setOnClickListener { finish() }
         editText.doAfterTextChanged { searchViewModel.setQuery(it.toString()) }
 
         searchViewModel.resultsList.observe(this, {
