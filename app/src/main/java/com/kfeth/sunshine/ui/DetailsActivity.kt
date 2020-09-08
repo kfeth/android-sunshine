@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.PagerSnapHelper
+import com.google.android.material.tabs.TabLayoutMediator
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.adapters.CurrentWeatherAdapter
 import com.kfeth.sunshine.adapters.ForecastAdapter
@@ -30,12 +30,10 @@ class DetailsActivity : AppCompatActivity() {
             viewModel = this@DetailsActivity.viewModel
             forecastRecyclerView.adapter = forecastAdapter
 
-            currentWeatherRecyclerView.apply {
-                adapter = currentWeatherAdapter
-                addItemDecoration(PageIndicatorDecoration())
-                PagerSnapHelper().attachToRecyclerView(this)
-            }
+            viewPager.adapter = currentWeatherAdapter
+            TabLayoutMediator(tabLayout, viewPager) { _, _ ->}.attach()
         }
+
         viewModel.apply {
             currentWeather.observe(this@DetailsActivity, { currentWeatherAdapter.replace(it) })
             forecast.observe(this@DetailsActivity, { forecastAdapter.submitList(it) })

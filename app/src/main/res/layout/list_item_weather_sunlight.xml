@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/current_weather_page_height"
+        android:layout_height="match_parent"
         android:paddingStart="@dimen/spacing_4"
         android:paddingTop="@dimen/spacing_4"
         android:paddingEnd="@dimen/spacing_4"
