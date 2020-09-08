@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.FavouritesActivity">
+        <activity
+            android:name=".ui.FavouritesActivity"
+            android:theme="@style/AppTheme.Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
