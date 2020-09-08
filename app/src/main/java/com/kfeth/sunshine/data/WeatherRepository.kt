@@ -49,21 +49,17 @@ class WeatherRepository @Inject constructor(
     )
 
     fun getWeatherForFavourites() = networkBoundResource(
-        query = { getFavourites() },
+        query = { weatherDao.getFavourites() },
         fetch = {
-            val favouriteIds = getFavourites().first().map { it.id }
+            val favouriteIds = weatherDao.getFavourites().first().map { it.id }
             weatherService.weatherForIds(favouriteIds.joinToString(","))
         },
-        saveFetchResult = {
-
-        }
+        saveFetchResult = { weatherDao.updateWeather(it.asWeatherUpdate()) }
     )
 
     fun getWeatherLocation(weatherId: Int) = weatherDao.getWeatherLocation(weatherId)
 
     fun getForecast(weatherId: Int) = weatherDao.getForecast(weatherId)
-    
-    fun getFavourites() = weatherDao.getFavourites()
 
     private suspend fun reverseGeocode(latitude: Double, longitude: Double): GeocodeResponse {
         val url = REVERSE_GEOCODE_API_URL.format(latitude, longitude)

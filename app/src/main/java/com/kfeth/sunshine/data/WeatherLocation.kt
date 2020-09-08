@@ -13,7 +13,7 @@ data class WeatherLocation(
     val addressString: String,
     val countryCode: String,
 ) {
-    constructor(query: String, location: WeatherLocationResponse, geo: GeocodeResponse) : this(
+    constructor(query: String, location: WeatherResponse, geo: GeocodeResponse) : this(
         id = location.id,
         name = location.name,
         latitude = location.coordinates.latitude,

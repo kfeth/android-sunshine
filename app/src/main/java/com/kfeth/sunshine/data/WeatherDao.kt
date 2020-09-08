@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -44,4 +45,7 @@ interface WeatherDao {
 
     @Query("SELECT l.*, w.* FROM weather AS w INNER JOIN locations AS l ON w.id = l.id INNER JOIN favourites AS f ON w.id = f.weatherId")
     fun getFavourites(): Flow<List<FavouriteItem>>
+
+    @Update(entity = CurrentWeather::class)
+    fun updateWeather(update: List<WeatherUpdate>)
 }

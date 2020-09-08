@@ -3,34 +3,37 @@ package com.kfeth.sunshine.viewmodels
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.liveData
 import androidx.lifecycle.map
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import com.kfeth.sunshine.data.FavouriteItem
 import com.kfeth.sunshine.data.WeatherRepository
 import com.kfeth.sunshine.utilities.Resource
 import com.kfeth.sunshine.utilities.isLoading
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class FavouritesViewModel @ViewModelInject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 
-    private val refreshEvent = MutableLiveData(false)
+    private var resource = MutableLiveData<Resource<List<FavouriteItem>>>()
 
     init {
-        refreshEvent.value = true
+        refreshContent()
     }
 
-    private val resource = refreshEvent.switchMap {
-        if (it) { repository.getWeatherForFavourites().asLiveData() }
-        else { liveData { Resource.success<List<FavouriteItem>>(emptyList()) } }
+    private fun refreshContent() {
+        viewModelScope.launch {
+            repository.getWeatherForFavourites().collect {
+                resource.value = it
+            }
+        }
     }
 
     val favourites = resource.map { it.data }
     val isLoading = resource.map { it.isLoading() }
 
     fun onPullToRefresh() {
-        refreshEvent.value = true
+        refreshContent()
     }
 }
