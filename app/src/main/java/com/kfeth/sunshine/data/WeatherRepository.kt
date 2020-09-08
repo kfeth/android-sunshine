@@ -49,11 +49,9 @@ class WeatherRepository @Inject constructor(
     )
 
     fun getWeatherForFavourites() = networkBoundResource(
+        shouldFetch = { !it.isNullOrEmpty() },
         query = { weatherDao.getFavourites() },
-        fetch = {
-            val favouriteIds = weatherDao.getFavourites().first().map { it.id }
-            weatherService.weatherForIds(favouriteIds.joinToString(","))
-        },
+        fetch = { weatherService.weatherForIds(weatherDao.getFavourites().first().joinIdsToString()) },
         saveFetchResult = { weatherDao.updateWeather(it.asWeatherUpdate()) }
     )
 

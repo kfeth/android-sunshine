@@ -17,3 +17,7 @@ data class FavouriteItem(
     @Ignore
     val staticMapUrl = STATIC_MAP_URL.format(longitude, latitude)
 }
+
+fun List<FavouriteItem>.joinIdsToString(): String {
+    return map { it.id }.joinToString(",")
+}
