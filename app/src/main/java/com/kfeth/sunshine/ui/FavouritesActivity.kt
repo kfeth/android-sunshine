@@ -8,9 +8,11 @@ import com.kfeth.sunshine.R
 import com.kfeth.sunshine.adapters.FavouritesAdapter
 import com.kfeth.sunshine.databinding.ActivityFavouritesBinding
 import com.kfeth.sunshine.utilities.createBinding
+import com.kfeth.sunshine.utilities.showSnackBar
 import com.kfeth.sunshine.viewmodels.FavouritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_favourites.fab
+import kotlinx.android.synthetic.main.activity_favourites.root
 
 @AndroidEntryPoint
 class FavouritesActivity : AppCompatActivity() {
@@ -30,6 +32,8 @@ class FavouritesActivity : AppCompatActivity() {
         }
 
         viewModel.favourites.observe(this, { listAdapter.submitList(it) })
+        viewModel.errorMessage.observe(this, { root.showSnackBar(it) })
+
         fab.setOnClickListener { startActivity(Intent(this, SearchActivity::class.java)) }
     }
 }

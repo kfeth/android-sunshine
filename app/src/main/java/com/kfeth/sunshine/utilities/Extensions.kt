@@ -1,11 +1,13 @@
 package com.kfeth.sunshine.utilities
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.google.android.material.snackbar.Snackbar
 import com.kfeth.sunshine.R
 import java.time.Instant
 import java.time.OffsetDateTime
@@ -20,6 +22,12 @@ fun <T : ViewDataBinding> AppCompatActivity.createBinding(@LayoutRes layoutRes: 
     return DataBindingUtil.setContentView(this, layoutRes)
 }
 
+fun View.showSnackBar(message: String?) {
+    if (message != null) {
+        Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
+    }
+}
+
 fun String.sanitise(): String {
     return toLowerCase(Locale.getDefault()).trim()
 }
@@ -29,7 +37,7 @@ fun Long.toOffsetDateTime(offset: Int): OffsetDateTime {
 }
 
 fun String.toWeatherIconDrawable(): Int {
-    return when(this) {
+    return when (this) {
         // https://openweathermap.org/weather-conditions
         "01d" -> R.drawable.ic_weather_01d
         "01n" -> R.drawable.ic_weather_01n
