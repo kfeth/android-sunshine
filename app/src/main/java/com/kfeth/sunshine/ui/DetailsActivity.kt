@@ -11,8 +11,10 @@ import com.kfeth.sunshine.adapters.CurrentWeatherAdapter
 import com.kfeth.sunshine.adapters.ForecastAdapter
 import com.kfeth.sunshine.databinding.ActivityDetailsBinding
 import com.kfeth.sunshine.utilities.createBinding
+import com.kfeth.sunshine.utilities.showSnackBar
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_details.root
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
@@ -38,6 +40,7 @@ class DetailsActivity : AppCompatActivity() {
             currentWeather.observe(this@DetailsActivity, { currentWeatherAdapter.replace(it) })
             forecast.observe(this@DetailsActivity, { forecastAdapter.submitList(it) })
             title.observe(this@DetailsActivity, { supportActionBar?.title = it })
+            errorMessage.observe(this@DetailsActivity, { root.showSnackBar(it) })
         }
     }
 

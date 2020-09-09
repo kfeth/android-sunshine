@@ -28,23 +28,18 @@ class DetailsViewModel @ViewModelInject constructor(
         repository.getWeatherDetails(it).asLiveData()
     }
 
-    private val _forecast = weatherId.switchMap {
+    val forecast = weatherId.switchMap {
         repository.getForecast(it).asLiveData()
     }
 
-    private val _isFavourite = weatherId.switchMap {
+    val isFavourite = weatherId.switchMap {
         repository.isFavourite(it).asLiveData()
     }
 
-    val forecast
-        get() = _forecast
-
-    val isFavourite
-        get() = _isFavourite
-
-    val isLoading = resource.map { it.isLoading() }
     val currentWeather = resource.map { it.data }
     val title = location.map { it.name }
+    val isLoading = resource.map { it.isLoading() }
+    val errorMessage = resource.map { it.message }
 
     fun onPullToRefresh() {
         val id = weatherId.value

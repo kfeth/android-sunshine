@@ -25,6 +25,7 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val binding = createBinding<ActivitySearchBinding>(R.layout.activity_search).apply {
             lifecycleOwner = this@SearchActivity
             viewModel = this@SearchActivity.viewModel
