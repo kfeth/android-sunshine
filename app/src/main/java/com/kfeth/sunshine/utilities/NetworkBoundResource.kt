@@ -24,12 +24,16 @@ fun <ResultType, RequestType> networkBoundResource(
             emit(Resource.loading(data))
 
             try {
-                saveFetchResult((fetch().body()!!))
+                val response = fetch()
+                if (!response.isSuccessful) {
+                    throw Exception("Error: ${response.code()} ${response.message()}")
+                }
+                saveFetchResult((response.body()!!))
                 query().map { Resource.success(it) }
             } catch (throwable: Throwable) {
                 throwable.printStackTrace()
                 onFetchFailed(throwable)
-                query().map { Resource.error(throwable.message ?: "Network error", it) }
+                query().map { Resource.error("Error: ${throwable.message}", it) }
             }
         } else {
             query().map { Resource.success(it) }

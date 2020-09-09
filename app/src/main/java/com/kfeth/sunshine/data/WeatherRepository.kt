@@ -25,13 +25,13 @@ class WeatherRepository @Inject constructor(
             delay(DEBOUNCE_DELAY_MILLIS)
             weatherService.searchLocations(query)
         },
-        saveFetchResult = { searchResponse ->
+        saveFetchResult = { response ->
             // TODO Refactor logic for creating entity
-            val locationsList = searchResponse.list.map {
+            val locations = response.list.map {
                 val geoCodeResponse = reverseGeocode(it.coordinates.latitude, it.coordinates.longitude)
                 WeatherLocation(query, it, geoCodeResponse)
             }
-            weatherDao.insertLocations(locationsList)
+            weatherDao.insertLocations(locations)
         }
     )
 

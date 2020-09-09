@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @InstallIn(ApplicationComponent::class)
@@ -22,41 +23,46 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideWeatherService(retrofit: Retrofit): WeatherService = retrofit.create(WeatherService::class.java)
+    fun provideWeatherService(retrofit: Retrofit): WeatherService =
+        retrofit.create(WeatherService::class.java)
 
     @Singleton
     @Provides
-    fun provideGeocodeService(retrofit: Retrofit): GeocodeService = retrofit.create(GeocodeService::class.java)
+    fun provideGeocodeService(retrofit: Retrofit): GeocodeService =
+        retrofit.create(GeocodeService::class.java)
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi) : Retrofit = Retrofit.Builder()
-        .baseUrl(WEATHER_API_URL)
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .client(okHttpClient)
-        .build()
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(WEATHER_API_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+            .build()
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi {
-        return Moshi.Builder()
+    fun provideMoshi(): Moshi =
+        Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
-    }
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder()
+    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+        OkHttpClient.Builder()
+            .callTimeout(10, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
             .build()
-    }
+
 
     @Singleton
     @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC else HttpLoggingInterceptor.Level.NONE
-        return interceptor
-    }
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor().apply {
+            level = when {
+                BuildConfig.DEBUG -> HttpLoggingInterceptor.Level.BASIC
+                else -> HttpLoggingInterceptor.Level.NONE
+            }
+        }
 }

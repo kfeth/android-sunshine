@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter.ofPattern
 
 @BindingAdapter("imageFromUrl")
 fun imageFromUrl(imageView: ImageView, url: String) {
-    val options = RequestOptions().centerCrop().error(R.drawable.ic_location_24dp)
+    val options = RequestOptions().centerCrop()
     Glide.with(imageView).load(url)
         .apply(options)
         .transition(DrawableTransitionOptions.withCrossFade())
@@ -39,8 +39,8 @@ fun toFormattedDate(textView: TextView, date: OffsetDateTime, datePattern: Strin
 
 @BindingAdapter("toDaylightHours")
 fun toDaylightHours(textView: TextView, forecast: ForecastWeather) {
-    val timeFormat = textView.context.resources.getString(R.string.time_format)
-    val sunrise = forecast.sunrise.format(ofPattern(timeFormat))
-    val sunset = forecast.sunset.format(ofPattern(timeFormat))
-    textView.text = String.format(textView.context.resources.getString(R.string.daylight_hours_format), sunrise, sunset)
+    val res = textView.context.resources
+    val sunrise = forecast.sunrise.format(ofPattern(res.getString(R.string.time_format)))
+    val sunset = forecast.sunset.format(ofPattern(res.getString(R.string.time_format)))
+    textView.text = String.format(res.getString(R.string.daylight_hours_format), sunrise, sunset)
 }
