@@ -23,11 +23,11 @@ class FavouritesViewModel @ViewModelInject constructor(
         refreshEvent.value = true
     }
 
-    val favourites = resource.map { it.data }
-    val isLoading = resource.map { it.isLoading() }
-    val errorMessage = resource.map { it.message }
-
     fun onPullToRefresh() {
         refreshEvent.value = true
     }
+
+    val favourites = resource.map { it.data }
+    val isLoading = resource.map { it.isLoading() }
+    val errorMessage = resource.map { it.message }
 }

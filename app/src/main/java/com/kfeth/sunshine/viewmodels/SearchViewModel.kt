@@ -1,7 +1,6 @@
 package com.kfeth.sunshine.viewmodels
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
@@ -22,13 +21,12 @@ class SearchViewModel @ViewModelInject constructor(
     private val searchChannel = ConflatedBroadcastChannel<String>()
     private val emptyFlow = flow { emit(Resource.success<List<WeatherLocation>>(emptyList())) }
 
-    private val resource: LiveData<Resource<List<WeatherLocation>>> =
-        searchChannel.asFlow().flatMapLatest { query ->
-            when {
-                query.isNotEmpty() -> repository.searchWeatherLocations(query)
-                else -> emptyFlow
-            }
-        }.asLiveData()
+    private val resource = searchChannel.asFlow().flatMapLatest { query ->
+        when {
+            query.isNotEmpty() -> repository.searchWeatherLocations(query)
+            else -> emptyFlow
+        }
+    }.asLiveData()
 
     fun setQuery(query: String) {
         val input = query.sanitise()
@@ -37,6 +35,7 @@ class SearchViewModel @ViewModelInject constructor(
         }
     }
 
-    val isLoading = resource.map { it.isLoading() }
     val resultsList = resource.map { it.data.orEmpty() }
+    val isLoading = resource.map { it.isLoading() }
+    val errorMessage = resource.map { it.message }
 }
