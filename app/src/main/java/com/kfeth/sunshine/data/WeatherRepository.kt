@@ -42,7 +42,6 @@ class WeatherRepository @Inject constructor(
             weatherService.weatherForLocation(location.latitude, location.longitude)
         },
         saveFetchResult = {
-            weatherDao.deleteForecast(weatherId)
             weatherDao.insertCurrentWeather(it.asCurrentWeather(weatherId))
             weatherDao.insertForecast(it.asForecast(weatherId))
         }

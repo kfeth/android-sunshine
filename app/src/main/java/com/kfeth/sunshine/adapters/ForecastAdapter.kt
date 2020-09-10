@@ -25,6 +25,10 @@ class ForecastAdapter :
         return ViewHolder(parent.createBinding(R.layout.list_item_forecast))
     }
 
+    override fun getItemId(position: Int): Long {
+        return getItem(position).date.toEpochSecond()
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
@@ -51,7 +55,7 @@ class ForecastAdapter :
 
 class ForecastDiffCallback : DiffUtil.ItemCallback<ForecastWeather>() {
     override fun areItemsTheSame(oldItem: ForecastWeather, newItem: ForecastWeather): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.date == newItem.date
     }
 
     override fun areContentsTheSame(oldItem: ForecastWeather, newItem: ForecastWeather): Boolean {

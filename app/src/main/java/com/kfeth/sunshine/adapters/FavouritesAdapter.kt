@@ -11,17 +11,22 @@ import com.kfeth.sunshine.databinding.ListItemFavouriteBinding
 import com.kfeth.sunshine.utilities.createBinding
 
 class FavouritesAdapter(private val itemClickListener: (Int) -> Unit) :
-        ListAdapter<FavouriteItem, FavouritesAdapter.ViewHolder>(FavouriteItemDiffCallback()) {
+    ListAdapter<FavouriteItem, FavouritesAdapter.ViewHolder>(FavouriteItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(parent.createBinding(R.layout.list_item_favourite))
+    }
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position).id.toLong()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position), itemClickListener)
     }
 
-    class ViewHolder(private val binding: ListItemFavouriteBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ListItemFavouriteBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: FavouriteItem, itemClickListener: (Int) -> Unit) {
             binding.apply {
                 favourite = item

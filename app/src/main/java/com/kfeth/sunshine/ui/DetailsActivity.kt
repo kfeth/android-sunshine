@@ -30,7 +30,7 @@ class DetailsActivity : AppCompatActivity() {
         createBinding<ActivityDetailsBinding>(R.layout.activity_details).apply {
             lifecycleOwner = this@DetailsActivity
             viewModel = this@DetailsActivity.viewModel
-            forecastRecyclerView.adapter = forecastAdapter
+            forecastRecyclerView.adapter = forecastAdapter.apply { setHasStableIds(true) }
 
             viewPager.adapter = currentWeatherAdapter
             TabLayoutMediator(tabLayout, viewPager) { _, _ ->}.attach()

@@ -28,7 +28,7 @@ class FavouritesActivity : AppCompatActivity() {
         createBinding<ActivityFavouritesBinding>(R.layout.activity_favourites).apply {
             lifecycleOwner = this@FavouritesActivity
             viewModel = this@FavouritesActivity.viewModel
-            recyclerView.adapter = listAdapter
+            recyclerView.adapter = listAdapter.apply { setHasStableIds(true) }
         }
 
         viewModel.favourites.observe(this, { listAdapter.submitList(it) })
