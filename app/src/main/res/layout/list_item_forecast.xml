@@ -119,26 +119,26 @@
                 tools:text="19 km/h" />
 
             <TextView
-                android:id="@+id/uvIndexLabel"
+                android:id="@+id/pressureLabel"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/uv_index"
+                android:text="@string/pressure"
                 android:textColor="@color/grey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/windLabel" />
 
             <TextView
-                android:id="@+id/uvIndex"
+                android:id="@+id/pressure"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{weather.uvIndex + ``}"
+                android:text="@{@string/pressure_format(weather.pressure)}"
                 android:textColor="@color/grey"
-                app:layout_constraintBottom_toBottomOf="@+id/uvIndexLabel"
+                app:layout_constraintBottom_toBottomOf="@+id/pressureLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/uvIndexLabel"
-                tools:text="4.62" />
+                app:layout_constraintTop_toTopOf="@+id/pressureLabel"
+                tools:text="1020 hPa" />
 
             <TextView
                 android:id="@+id/humidityLabel"
@@ -148,7 +148,7 @@
                 android:text="@string/humidity"
                 android:textColor="@color/grey"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/uvIndexLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/pressureLabel" />
 
             <TextView
                 android:id="@+id/humidity"

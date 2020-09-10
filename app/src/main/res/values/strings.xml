@@ -16,6 +16,7 @@
     <string name="last_update">last update</string>
 
     <string name="temperature_format">%.0f°</string>
+    <string name="pressure_format">%d hPa</string>
     <string name="wind_speed_format">%.1f m/s</string>
     <string name="humidity_format">%1$d%%</string>
     <string name="visibility_format">%d km</string>

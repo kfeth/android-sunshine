@@ -11,7 +11,8 @@ data class WeatherResponse(
     @Json(name = "name") val name: String,
     @Json(name = "coord") val coordinates: CoordinatesResponse,
     @Json(name = "weather") val conditions: List<ConditionResponse>,
-    @Json(name = "main") val environment: EnvironmentResponse
+    @Json(name = "main") val environment: EnvironmentResponse,
+    @Json(name = "sys") val system: SystemResponse
 )
 
 data class CoordinatesResponse(
@@ -28,12 +29,30 @@ data class ConditionResponse(
     @Json(name = "description") val description: String
 )
 
+data class SystemResponse(
+    @Json(name = "country") val countryCode: String
+)
+
 fun WeatherSummaryResponse.asWeatherUpdate(): List<WeatherUpdate> {
     return list.map {
         WeatherUpdate(
             id = it.id,
             temperature = it.environment.temperature,
             iconId = it.conditions.first().iconId,
+        )
+    }
+}
+
+fun WeatherSummaryResponse.asLocations(query: String): List<WeatherLocation> {
+    return list.map {
+        WeatherLocation(
+            id = it.id,
+            name = it.name,
+            latitude = it.coordinates.latitude,
+            longitude = it.coordinates.longitude,
+            queryString = query,
+            countryCode = it.system.countryCode,
+            addressString = ""
         )
     }
 }

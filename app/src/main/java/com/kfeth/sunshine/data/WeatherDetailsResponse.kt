@@ -17,7 +17,6 @@ data class CurrentWeatherResponse(
     @Json(name = "temp") val temperature: Double,
     @Json(name = "pressure") val pressure: Int,
     @Json(name = "humidity") val humidity: Int,
-    @Json(name = "uvi") val uvIndex: Double,
     @Json(name = "visibility") val visibility: Int,
     @Json(name = "wind_speed") val windSpeed: Double,
     @Json(name = "weather") val conditions: List<ConditionResponse>,
@@ -31,7 +30,6 @@ data class ForecastResponse(
     @Json(name = "pressure") val pressure: Int,
     @Json(name = "humidity") val humidity: Int,
     @Json(name = "wind_speed") val windSpeed: Double,
-    @Json(name = "uvi") val uvIndex: Double,
     @Json(name = "weather") val conditions: List<ConditionResponse>
 )
 
@@ -48,7 +46,6 @@ fun WeatherDetailsResponse.asCurrentWeather(weatherId: Int): CurrentWeather {
         temperature = current.temperature,
         pressure = current.pressure,
         humidity = current.humidity,
-        uvIndex = current.uvIndex,
         visibility = current.visibility,
         windSpeed = current.windSpeed,
         date = current.date.toOffsetDateTime(timezoneOffset),
@@ -68,7 +65,6 @@ fun WeatherDetailsResponse.asForecast(weatherId: Int): List<ForecastWeather> {
             pressure = it.pressure,
             humidity = it.humidity,
             windSpeed = it.windSpeed,
-            uvIndex = it.uvIndex,
             date = it.date.toOffsetDateTime(timezoneOffset),
             sunrise = it.sunrise.toOffsetDateTime(timezoneOffset),
             sunset = it.sunset.toOffsetDateTime(timezoneOffset)

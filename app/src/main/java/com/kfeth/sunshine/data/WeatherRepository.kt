@@ -25,13 +25,10 @@ class WeatherRepository @Inject constructor(
             delay(DEBOUNCE_DELAY_MILLIS)
             weatherService.searchLocations(query)
         },
-        saveFetchResult = { response ->
-            // TODO Refactor logic for creating entity
-            val locations = response.list.map {
-                val geoCodeResponse = reverseGeocode(it.coordinates.latitude, it.coordinates.longitude)
-                WeatherLocation(query, it, geoCodeResponse)
-            }
-            weatherDao.insertLocations(locations)
+        saveFetchResult = {
+            weatherDao.insertLocations(it.asLocations(query).map { item ->
+                item.copy(addressString = reverseGeocode(item.latitude, item.longitude).address)
+            })
         }
     )
 
@@ -50,7 +47,9 @@ class WeatherRepository @Inject constructor(
     fun getWeatherForFavourites() = networkBoundResource(
         shouldFetch = { !it.isNullOrEmpty() },
         query = { weatherDao.getFavourites() },
-        fetch = { weatherService.weatherForIds(weatherDao.getFavourites().first().joinIdsToString()) },
+        fetch = {
+            weatherService.weatherForIds(weatherDao.getFavourites().first().joinIdsToString())
+        },
         saveFetchResult = { weatherDao.updateWeather(it.asWeatherUpdate()) }
     )
 
