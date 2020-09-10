@@ -43,7 +43,7 @@ interface WeatherDao {
     @Query("SELECT l.name, l.addressString, l.latitude, l.longitude, l.countryCode, " +
             "w.id, w.iconId, w.description, w.temperature FROM weather AS w " +
             "INNER JOIN locations AS l ON w.id = l.id " +
-            "INNER JOIN favourites AS f ON w.id = f.weatherId")
+            "INNER JOIN favourites AS f ON w.id = f.weatherId ORDER BY l.name")
     fun getFavourites(): Flow<List<FavouriteItem>>
 
     @Update(entity = CurrentWeather::class)
