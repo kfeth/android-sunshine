@@ -40,6 +40,7 @@ class WeatherRepository @Inject constructor(
         },
         saveFetchResult = {
             weatherDao.insertCurrentWeather(it.asCurrentWeather(weatherId))
+            weatherDao.deleteForecast(weatherId)
             weatherDao.insertForecast(it.asForecast(weatherId))
         }
     )
