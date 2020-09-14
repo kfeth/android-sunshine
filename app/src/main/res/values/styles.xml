@@ -4,6 +4,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.App.NoTitle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -15,10 +16,6 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
-    </style>
-
-    <style name="AppTheme.Home" parent="@style/AppTheme">
-        <item name="actionBarStyle">@style/ActionBar.Solid.App.NoTitle</item>
     </style>
 
     <style name="ActionBar.Solid.App.NoTitle" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">

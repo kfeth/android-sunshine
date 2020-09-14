@@ -46,7 +46,7 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_KEY_WEATHER_ID = "keyWeatherId"
-        fun newIntent(context: Context, weatherId: Int): Intent {
+        fun newIntent(context: Context?, weatherId: Int): Intent {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(EXTRA_KEY_WEATHER_ID, weatherId)
             return intent

@@ -7,6 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.kfeth.sunshine.R
 import java.time.Instant
@@ -20,6 +21,10 @@ fun <T : ViewDataBinding> ViewGroup.createBinding(@LayoutRes layoutRes: Int): T 
 
 fun <T : ViewDataBinding> AppCompatActivity.createBinding(@LayoutRes layoutRes: Int): T {
     return DataBindingUtil.setContentView(this, layoutRes)
+}
+
+fun <T : ViewDataBinding> Fragment.bind(@LayoutRes layoutRes: Int, container: ViewGroup?): T {
+    return DataBindingUtil.inflate(layoutInflater, layoutRes, container,false)
 }
 
 fun View.showSnackBar(message: String?) {

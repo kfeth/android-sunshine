@@ -13,9 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".ui.FavouritesActivity"
-            android:theme="@style/AppTheme.Home">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +25,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".ui.DetailsActivity" />
-
     </application>
 
 </manifest>
