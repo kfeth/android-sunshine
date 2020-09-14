@@ -10,7 +10,7 @@ import com.kfeth.sunshine.data.WeatherLocation
 import com.kfeth.sunshine.databinding.ListItemSearchResultBinding
 import com.kfeth.sunshine.utilities.createBinding
 
-class SearchAdapter(private val itemClickListener: (WeatherLocation) -> Unit) :
+class SearchAdapter(private val itemClickListener: (Int) -> Unit) :
     ListAdapter<WeatherLocation, SearchAdapter.ViewHolder>(WeatherLocationDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -21,10 +21,10 @@ class SearchAdapter(private val itemClickListener: (WeatherLocation) -> Unit) :
 
     class ViewHolder(private val binding: ListItemSearchResultBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: WeatherLocation, itemClickListener: (WeatherLocation) -> Unit) {
+        fun bind(item: WeatherLocation, itemClickListener: (Int) -> Unit) {
             binding.apply {
                 weatherLocation = item
-                clickListener = View.OnClickListener { itemClickListener(item) }
+                clickListener = View.OnClickListener { itemClickListener(item.id) }
                 executePendingBindings()
             }
         }
