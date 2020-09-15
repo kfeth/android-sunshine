@@ -19,9 +19,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:onClick="@{clickListener}"
-        android:paddingStart="@dimen/spacing_4"
-        android:paddingTop="@dimen/spacing_4"
-        android:paddingEnd="@dimen/spacing_4">
+        android:padding="@dimen/spacing_4">
 
         <ImageView
             android:id="@+id/weatherIcon"
@@ -185,13 +183,6 @@
                 tools:text="07:30 AM / 09:35 PM" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            style="@style/ListDivider"
-            android:layout_marginTop="@dimen/spacing_4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/extraDetailsContainer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
