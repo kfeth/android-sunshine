@@ -9,7 +9,6 @@ import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.kfeth.sunshine.data.WeatherRepository
-import com.kfeth.sunshine.ui.DetailsActivity.Companion.EXTRA_KEY_WEATHER_ID
 import com.kfeth.sunshine.utilities.isLoading
 import kotlinx.coroutines.launch
 
@@ -18,7 +17,7 @@ class DetailsViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val weatherId = savedStateHandle.getLiveData<Int>(EXTRA_KEY_WEATHER_ID)
+    private val weatherId = savedStateHandle.getLiveData<Int>("weatherId")
 
     private val location = weatherId.switchMap {
         repository.getWeatherLocation(it).asLiveData()

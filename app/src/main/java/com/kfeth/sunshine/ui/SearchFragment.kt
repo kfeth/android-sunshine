@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.adapters.SearchAdapter
 import com.kfeth.sunshine.databinding.FragmentSearchBinding
+import com.kfeth.sunshine.ui.SearchFragmentDirections.Companion.actionSearchFragmentToDetailsFragment
 import com.kfeth.sunshine.utilities.bind
 import com.kfeth.sunshine.utilities.hideKeyboard
 import com.kfeth.sunshine.utilities.requestKeyboardFocus
@@ -24,7 +26,8 @@ import kotlinx.android.synthetic.main.view_search_bar.editText
 class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModels()
-    private val listAdapter = SearchAdapter { show(it) }.apply { setHasStableIds(true) }
+    private val listAdapter =
+        SearchAdapter { navigateToDetails(it) }.apply { setHasStableIds(true) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,10 +53,13 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private fun show(weatherId: Int) = startActivity(DetailsActivity.newIntent(context, weatherId))
-
     override fun onDestroyView() {
         super.onDestroyView()
         hideKeyboard()
+    }
+
+    private fun navigateToDetails(weatherId: Int) {
+        val action = actionSearchFragmentToDetailsFragment(weatherId)
+        findNavController().navigate(action)
     }
 }
