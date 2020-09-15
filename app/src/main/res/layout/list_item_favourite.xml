@@ -33,7 +33,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 app:imageFromUrl="@{favourite.staticMapUrl}"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:scaleType="centerCrop"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -50,27 +53,27 @@
                     style="@style/TextAppearance.AppCompat.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/background_dimmed_light"
+                    android:background="@color/semi_transparent"
                     android:padding="@dimen/spacing_1"
                     android:text="@{favourite.name}"
                     android:textColor="@android:color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Dublin" />
+                    tools:text="@tools:sample/cities" />
 
                 <TextView
                     android:id="@+id/locationSubtitle"
                     style="@style/TextAppearance.AppCompat.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/background_dimmed_light"
+                    android:background="@color/semi_transparent"
                     android:padding="@dimen/spacing_1"
                     android:src="@mipmap/ic_launcher"
                     android:text="@{favourite.addressString}"
                     android:textColor="@android:color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/locationTitle"
-                    tools:text="Dublin, Ireland" />
+                    tools:text="@tools:sample/cities" />
 
                 <ImageView
                     android:id="@+id/flagIcon"
@@ -79,7 +82,8 @@
                     app:flagIconFromCountryCode="@{favourite.countryCode}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:srcCompat="@drawable/ic_location_24dp" />
+                    tools:srcCompat="@drawable/ic_location_24dp"
+                    tools:tint="@android:color/white" />
 
                 <ImageView
                     android:id="@+id/weatherIcon"
