@@ -24,8 +24,9 @@
             app:viewModel="@{viewModel}" />
 
         <View
-            android:id="@+id/divider"
-            style="@style/ListDivider" />
+            android:layout_height="0.5dp"
+            android:layout_width="match_parent"
+            android:background="?attr/colorControlNormal"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
