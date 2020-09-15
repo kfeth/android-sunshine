@@ -14,15 +14,14 @@
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_light"
         android:orientation="vertical"
         android:padding="@dimen/spacing_3"
         tools:context=".ui.SearchFragment">
 
         <include
             android:id="@+id/search"
-            app:viewModel="@{viewModel}"
-            layout="@layout/view_search_bar" />
+            layout="@layout/view_search_bar"
+            app:viewModel="@{viewModel}" />
 
         <View
             android:id="@+id/divider"
@@ -32,7 +31,6 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
             android:orientation="vertical"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
