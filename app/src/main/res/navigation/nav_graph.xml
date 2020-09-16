@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.kfeth.sunshine.ui.FavouritesFragment"
-        android:label=""
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_favourites">
         <action
             android:id="@+id/action_favouritesFragment_to_searchFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.kfeth.sunshine.ui.SearchFragment"
-        android:label=""
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_detailsFragment"
@@ -44,6 +44,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.kfeth.sunshine.ui.DetailsFragment"
+        android:label=""
         tools:layout="@layout/fragment_details">
         <argument
             android:name="weatherId"

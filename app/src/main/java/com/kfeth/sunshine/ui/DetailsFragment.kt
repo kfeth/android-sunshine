@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
@@ -51,7 +51,7 @@ class DetailsFragment : Fragment() {
             errorMessage.observe(viewLifecycleOwner, { root.showSnackBar(it) })
 
             title.observe(viewLifecycleOwner, {
-                activity?.findViewById<Toolbar>(R.id.toolbar)?.title = it
+                (activity as AppCompatActivity).supportActionBar?.title = it
             })
         }
     }
