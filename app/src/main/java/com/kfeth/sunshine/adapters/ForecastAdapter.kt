@@ -16,6 +16,12 @@ class ForecastAdapter :
     private var expandedPosition = -1
     private lateinit var recyclerView: RecyclerView
 
+    init { setHasStableIds(true) }
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position).date.toEpochSecond()
+    }
+
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         this.recyclerView = recyclerView
@@ -23,10 +29,6 @@ class ForecastAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(parent.createBinding(R.layout.list_item_forecast))
-    }
-
-    override fun getItemId(position: Int): Long {
-        return getItem(position).date.toEpochSecond()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

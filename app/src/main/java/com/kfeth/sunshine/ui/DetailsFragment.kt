@@ -22,10 +22,8 @@ import kotlinx.android.synthetic.main.fragment_details.root
 class DetailsFragment : Fragment() {
 
     private val viewModel: DetailsViewModel by viewModels()
-
-    // TODO Inject adapters?
     private val currentWeatherAdapter = CurrentWeatherAdapter()
-    private val forecastAdapter = ForecastAdapter().apply { setHasStableIds(true) }
+    private val forecastAdapter = ForecastAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,

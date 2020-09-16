@@ -26,8 +26,7 @@ import kotlinx.android.synthetic.main.view_search_bar.editText
 class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModels()
-    private val listAdapter =
-        SearchAdapter { navigateToDetails(it) }.apply { setHasStableIds(true) }
+    private val listAdapter = SearchAdapter(itemClickListener = { navigateToDetails(it) })
 
     override fun onCreateView(
         inflater: LayoutInflater,

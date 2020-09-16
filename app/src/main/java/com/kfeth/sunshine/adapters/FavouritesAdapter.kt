@@ -13,12 +13,14 @@ import com.kfeth.sunshine.utilities.createBinding
 class FavouritesAdapter(private val itemClickListener: (Int) -> Unit) :
     ListAdapter<FavouriteItem, FavouritesAdapter.ViewHolder>(FavouriteItemDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.createBinding(R.layout.list_item_favourite))
-    }
+    init { setHasStableIds(true) }
 
     override fun getItemId(position: Int): Long {
         return getItem(position).id.toLong()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(parent.createBinding(R.layout.list_item_favourite))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

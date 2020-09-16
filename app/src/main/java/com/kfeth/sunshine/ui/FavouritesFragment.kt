@@ -22,8 +22,7 @@ import kotlinx.android.synthetic.main.fragment_favourites.root
 class FavouritesFragment : Fragment() {
 
     private val viewModel: FavouritesViewModel by viewModels()
-    private val adapter =
-        FavouritesAdapter { navigateToDetails(it) }.apply { setHasStableIds(true) }
+    private val adapter = FavouritesAdapter(itemClickListener = { navigateToDetails(it) })
 
     override fun onCreateView(
         inflater: LayoutInflater,

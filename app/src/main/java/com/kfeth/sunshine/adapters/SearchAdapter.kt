@@ -13,6 +13,12 @@ import com.kfeth.sunshine.utilities.createBinding
 class SearchAdapter(private val itemClickListener: (Int) -> Unit) :
     ListAdapter<WeatherLocation, SearchAdapter.ViewHolder>(WeatherLocationDiffCallback()) {
 
+    init { setHasStableIds(true) }
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position).id.toLong()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(parent.createBinding(R.layout.list_item_search_result))
 
