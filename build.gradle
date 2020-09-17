@@ -30,6 +30,7 @@ buildscript {
         roomVersion = '2.2.5'
         swipeRefreshLayoutVersion = '1.1.0'
         testExtJunitVersion = '1.1.2'
+        timberVersion = '4.7.1'
         workManagerVersion = '2.4.0'
     }
 

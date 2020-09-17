@@ -15,6 +15,8 @@ import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import timber.log.Timber.DebugTree
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -34,6 +36,7 @@ class SunshineApp : Application(), Configuration.Provider {
     private fun delayedInit() {
         applicationScope.launch {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            if (BuildConfig.DEBUG) { Timber.plant(DebugTree()) }
             setupPeriodicWork()
         }
     }

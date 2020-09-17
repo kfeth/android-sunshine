@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
+import timber.log.Timber
 
 fun <ResultType, RequestType> networkBoundResource(
     query: () -> Flow<ResultType>,
@@ -31,7 +32,7 @@ fun <ResultType, RequestType> networkBoundResource(
                 saveFetchResult((response.body()!!))
                 query().map { Resource.success(it) }
             } catch (throwable: Throwable) {
-                throwable.printStackTrace()
+                Timber.e(throwable)
                 onFetchFailed(throwable)
                 query().map { Resource.error("Error: ${throwable.message}", it) }
             }

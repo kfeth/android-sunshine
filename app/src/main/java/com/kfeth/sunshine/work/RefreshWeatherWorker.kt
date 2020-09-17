@@ -11,6 +11,7 @@ import com.kfeth.sunshine.data.WeatherDao
 import com.kfeth.sunshine.data.asWeatherUpdate
 import com.kfeth.sunshine.data.joinIdsToString
 import kotlinx.coroutines.flow.first
+import timber.log.Timber
 
 class RefreshWeatherWorker @WorkerInject constructor(
     @Assisted appContext: Context,
@@ -31,7 +32,7 @@ class RefreshWeatherWorker @WorkerInject constructor(
                 weatherDao.updateWeather(response?.asWeatherUpdate())
             }
         } catch (throwable: Throwable) {
-            throwable.printStackTrace()
+            Timber.e(throwable)
             return Result.retry()
         }
         return Result.success()
