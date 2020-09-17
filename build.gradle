@@ -24,12 +24,13 @@ buildscript {
         liveDataVersion = '2.2.0'
         materialVersion = '1.2.0'
         moshiVersion = '1.9.3'
-        navigation_version = '2.3.0'
+        navigationVersion = '2.3.0'
         okHttpVersion = '4.8.1'
         retrofitVersion = '2.9.0'
         roomVersion = '2.2.5'
         swipeRefreshLayoutVersion = '1.1.0'
         testExtJunitVersion = '1.1.2'
+        workManagerVersion = '2.4.0'
     }
 
     repositories {
@@ -38,7 +39,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"

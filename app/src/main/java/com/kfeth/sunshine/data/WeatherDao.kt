@@ -50,5 +50,5 @@ interface WeatherDao {
     fun getFavourites(): Flow<List<FavouriteItem>>
 
     @Update(entity = CurrentWeather::class)
-    fun updateWeather(update: List<WeatherUpdate>)
+    fun updateWeather(update: List<WeatherUpdate>?)
 }
