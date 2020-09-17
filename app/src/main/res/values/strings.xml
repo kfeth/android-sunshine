@@ -4,7 +4,8 @@
     <string name="app_name">Sunshine</string>
 
     <!-- Search Screen -->
-    <string name="search_hint"><![CDATA[Search towns & cities]]></string>
+    <string name="search">Search</string>
+    <string name="search_hint"><![CDATA[Towns & cities]]></string>
 
     <!-- Details Screen -->
     <string name="pressure">Pressure:</string>
