@@ -3,6 +3,9 @@
     <!-- Common -->
     <string name="app_name">Sunshine</string>
 
+    <!-- Favourites Screen -->
+    <string name="no_favourites_added">No favourites added</string>
+
     <!-- Search Screen -->
     <string name="search">Search</string>
     <string name="search_hint"><![CDATA[Towns & cities]]></string>
