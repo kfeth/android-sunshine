@@ -4,6 +4,8 @@
     <string name="app_name">Sunshine</string>
 
     <!-- Favourites Screen -->
+    <string name="on_boarding_title">Get Started</string>
+    <string name="on_boarding_subtitle">Search for weather in your area</string>
     <string name="no_favourites_added">No favourites added</string>
 
     <!-- Search Screen -->

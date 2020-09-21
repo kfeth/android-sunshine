@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.android.material.snackbar.Snackbar
 import com.kfeth.sunshine.R
 import java.time.Instant
@@ -22,12 +24,12 @@ fun <T : ViewDataBinding> ViewGroup.createBinding(@LayoutRes layoutRes: Int): T 
     return DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
 }
 
-fun <T : ViewDataBinding> AppCompatActivity.createBinding(@LayoutRes layoutRes: Int): T {
+fun <T : ViewDataBinding> AppCompatActivity.bind(@LayoutRes layoutRes: Int): T {
     return DataBindingUtil.setContentView(this, layoutRes)
 }
 
 fun <T : ViewDataBinding> Fragment.bind(@LayoutRes layoutRes: Int, container: ViewGroup?): T {
-    return DataBindingUtil.inflate(layoutInflater, layoutRes, container,false)
+    return DataBindingUtil.inflate(layoutInflater, layoutRes, container, false)
 }
 
 fun View.showSnackBar(message: String?) {
@@ -77,4 +79,26 @@ fun String.toWeatherIconDrawable(): Int {
         "50n" -> R.drawable.ic_weather_50n
         else -> R.drawable.ic_weather_03d
     }
+}
+
+fun Fragment.onBoardForView(view: View, onClick: () -> Unit, onDismissed: () -> Unit) {
+    val title = resources.getString(R.string.on_boarding_title)
+    val subtitle = resources.getString(R.string.on_boarding_subtitle)
+
+    TapTargetView.showFor(activity, TapTarget.forView(view, title, subtitle)
+        .transparentTarget(true)
+        .textColor(android.R.color.white),
+
+        object : TapTargetView.Listener() {
+            override fun onTargetClick(view: TapTargetView?) {
+                super.onTargetClick(view)
+                onClick.invoke()
+            }
+
+            override fun onTargetDismissed(view: TapTargetView?, userInitiated: Boolean) {
+                super.onTargetDismissed(view, userInitiated)
+                onDismissed.invoke()
+            }
+        }
+    )
 }

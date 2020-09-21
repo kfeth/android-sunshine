@@ -12,6 +12,7 @@ import com.kfeth.sunshine.adapters.FavouritesAdapter
 import com.kfeth.sunshine.databinding.FragmentFavouritesBinding
 import com.kfeth.sunshine.ui.FavouritesFragmentDirections.Companion.actionFavouritesFragmentToDetailsFragment
 import com.kfeth.sunshine.utilities.bind
+import com.kfeth.sunshine.utilities.onBoardForView
 import com.kfeth.sunshine.utilities.showSnackBar
 import com.kfeth.sunshine.viewmodels.FavouritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +42,16 @@ class FavouritesFragment : Fragment() {
 
         viewModel.errorMessage.observe(viewLifecycleOwner, { root.showSnackBar(it) })
 
+        viewModel.userOnBoarded.observe(viewLifecycleOwner, { if (!it) onBoardUser() })
+
         fab.setOnClickListener { navigateToSearch() }
+    }
+
+    private fun onBoardUser() {
+        onBoardForView(
+            view = fab,
+            onClick = { navigateToSearch() },
+            onDismissed = { viewModel.onTutorialDismissed() })
     }
 
     private fun navigateToSearch() {
