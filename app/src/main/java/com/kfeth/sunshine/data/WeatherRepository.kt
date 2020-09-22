@@ -5,11 +5,11 @@ import com.kfeth.sunshine.api.GeocodeService
 import com.kfeth.sunshine.api.WeatherService
 import com.kfeth.sunshine.utilities.DEBOUNCE_DELAY_MILLIS
 import com.kfeth.sunshine.utilities.networkBoundResource
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import javax.inject.Inject
-import javax.inject.Singleton
 
 @Singleton
 class WeatherRepository @Inject constructor(
