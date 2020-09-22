@@ -7,7 +7,7 @@ import java.util.Locale
 data class WeatherDetailsResponse(
     @Json(name = "timezone_offset") val timezoneOffset: Int,
     @Json(name = "current") val current: CurrentWeatherResponse,
-    @Json(name = "daily") val daily: List<ForecastResponse>,
+    @Json(name = "daily") val daily: List<ForecastResponse>
 )
 
 data class CurrentWeatherResponse(
@@ -19,7 +19,7 @@ data class CurrentWeatherResponse(
     @Json(name = "humidity") val humidity: Int,
     @Json(name = "visibility") val visibility: Int,
     @Json(name = "wind_speed") val windSpeed: Double,
-    @Json(name = "weather") val conditions: List<ConditionResponse>,
+    @Json(name = "weather") val conditions: List<ConditionResponse>
 )
 
 data class ForecastResponse(
@@ -35,7 +35,7 @@ data class ForecastResponse(
 
 data class TemperatureResponse(
     @Json(name = "min") val min: Double,
-    @Json(name = "max") val max: Double,
+    @Json(name = "max") val max: Double
 )
 
 fun WeatherDetailsResponse.asCurrentWeather(weatherId: Int): CurrentWeather {

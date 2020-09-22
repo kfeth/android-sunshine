@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.ForecastWeather
 import com.kfeth.sunshine.databinding.ListItemForecastBinding
-import com.kfeth.sunshine.utilities.createBinding
+import com.kfeth.sunshine.utilities.bind
 
 class ForecastAdapter :
     ListAdapter<ForecastWeather, ForecastAdapter.ViewHolder>(ForecastDiffCallback()) {
@@ -28,7 +28,7 @@ class ForecastAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.createBinding(R.layout.list_item_forecast))
+        return ViewHolder(parent.bind(R.layout.list_item_forecast))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

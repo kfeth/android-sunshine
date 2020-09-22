@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.FavouriteItem
 import com.kfeth.sunshine.databinding.ListItemFavouriteBinding
-import com.kfeth.sunshine.utilities.createBinding
+import com.kfeth.sunshine.utilities.bind
 
 class FavouritesAdapter(private val itemClickListener: (Int) -> Unit) :
     ListAdapter<FavouriteItem, FavouritesAdapter.ViewHolder>(FavouriteItemDiffCallback()) {
@@ -20,7 +20,7 @@ class FavouritesAdapter(private val itemClickListener: (Int) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.createBinding(R.layout.list_item_favourite))
+        return ViewHolder(parent.bind(R.layout.list_item_favourite))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

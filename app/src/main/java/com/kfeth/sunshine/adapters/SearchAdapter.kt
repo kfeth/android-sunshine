@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.WeatherLocation
 import com.kfeth.sunshine.databinding.ListItemSearchResultBinding
-import com.kfeth.sunshine.utilities.createBinding
+import com.kfeth.sunshine.utilities.bind
 
 class SearchAdapter(private val itemClickListener: (Int) -> Unit) :
     ListAdapter<WeatherLocation, SearchAdapter.ViewHolder>(WeatherLocationDiffCallback()) {
@@ -20,7 +20,7 @@ class SearchAdapter(private val itemClickListener: (Int) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(parent.createBinding(R.layout.list_item_search_result))
+        ViewHolder(parent.bind(R.layout.list_item_search_result))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position), itemClickListener)

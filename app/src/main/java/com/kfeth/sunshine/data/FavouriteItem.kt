@@ -12,7 +12,7 @@ data class FavouriteItem(
     val temperature: Double,
     val latitude: Double,
     val longitude: Double,
-    val countryCode: String,
+    val countryCode: String
 ) {
     @Ignore
     val staticMapUrl = STATIC_MAP_URL.format(longitude, latitude)

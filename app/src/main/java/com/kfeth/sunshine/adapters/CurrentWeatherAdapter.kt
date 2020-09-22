@@ -1,13 +1,13 @@
 package com.kfeth.sunshine.adapters
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.CurrentWeather
 import com.kfeth.sunshine.databinding.ListItemWeatherStatsBinding
 import com.kfeth.sunshine.databinding.ListItemWeatherSummaryBinding
 import com.kfeth.sunshine.databinding.ListItemWeatherSunlightBinding
-import com.kfeth.sunshine.utilities.createBinding
+import com.kfeth.sunshine.utilities.bind
 
 class CurrentWeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -23,9 +23,9 @@ class CurrentWeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            viewTypeSummary -> ViewHolderSummary(parent.createBinding(R.layout.list_item_weather_summary))
-            viewTypeStats -> ViewHolderStats(parent.createBinding(R.layout.list_item_weather_stats))
-            else -> ViewHolderSunlight(parent.createBinding(R.layout.list_item_weather_sunlight))
+            viewTypeSummary -> ViewHolderSummary(parent.bind(R.layout.list_item_weather_summary))
+            viewTypeStats -> ViewHolderStats(parent.bind(R.layout.list_item_weather_stats))
+            else -> ViewHolderSunlight(parent.bind(R.layout.list_item_weather_sunlight))
         }
     }
 

@@ -20,7 +20,7 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.util.Locale
 
-fun <T : ViewDataBinding> ViewGroup.createBinding(@LayoutRes layoutRes: Int): T {
+fun <T : ViewDataBinding> ViewGroup.bind(@LayoutRes layoutRes: Int): T {
     return DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
 }
 

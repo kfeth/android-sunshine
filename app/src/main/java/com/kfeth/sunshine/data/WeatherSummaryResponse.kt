@@ -38,7 +38,7 @@ fun WeatherSummaryResponse.asWeatherUpdate(): List<WeatherUpdate> {
         WeatherUpdate(
             id = it.id,
             temperature = it.environment.temperature,
-            iconId = it.conditions.first().iconId,
+            iconId = it.conditions.first().iconId
         )
     }
 }

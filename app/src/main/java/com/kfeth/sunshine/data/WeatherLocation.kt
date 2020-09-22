@@ -11,5 +11,5 @@ data class WeatherLocation(
     val longitude: Double,
     val queryString: String,
     val addressString: String,
-    val countryCode: String,
+    val countryCode: String
 )

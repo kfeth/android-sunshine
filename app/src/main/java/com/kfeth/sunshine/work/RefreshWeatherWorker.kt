@@ -17,7 +17,7 @@ class RefreshWeatherWorker @WorkerInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val weatherService: WeatherService,
-    private val weatherDao: WeatherDao,
+    private val weatherDao: WeatherDao
 ) : CoroutineWorker(appContext, workerParams) {
 
     companion object {
