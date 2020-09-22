@@ -19,11 +19,11 @@
 
         <TextView
             android:id="@+id/emptyLabel"
+            style="@style/TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_4"
             android:text="@string/no_favourites_added"
-            android:textSize="20sp"
             android:visibility="@{viewModel.favourites.empty ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
