@@ -16,14 +16,14 @@ import com.kfeth.sunshine.utilities.bind
 import com.kfeth.sunshine.utilities.showSnackBar
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_details.forecastRecyclerView
 import kotlinx.android.synthetic.main.fragment_details.root
+import kotlinx.android.synthetic.main.fragment_details.viewPager
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private val viewModel: DetailsViewModel by viewModels()
-    private val currentWeatherAdapter = CurrentWeatherAdapter()
-    private val forecastAdapter = ForecastAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,18 +33,22 @@ class DetailsFragment : Fragment() {
         return bind<FragmentDetailsBinding>(R.layout.fragment_details, container).apply {
             lifecycleOwner = this@DetailsFragment
             viewModel = this@DetailsFragment.viewModel
-            forecastRecyclerView.adapter = forecastAdapter
+            forecastRecyclerView.adapter = ForecastAdapter()
 
-            viewPager.adapter = currentWeatherAdapter
+            viewPager.adapter = CurrentWeatherAdapter()
             TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
         }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.apply {
-            currentWeather.observe(viewLifecycleOwner, { currentWeatherAdapter.replace(it) })
+            currentWeather.observe(viewLifecycleOwner, {
+                (viewPager.adapter as CurrentWeatherAdapter).replace(it)
+            })
 
-            forecast.observe(viewLifecycleOwner, { forecastAdapter.submitList(it) })
+            forecast.observe(viewLifecycleOwner, {
+                (forecastRecyclerView.adapter as ForecastAdapter).submitList(it)
+            })
 
             errorMessage.observe(viewLifecycleOwner, { root.showSnackBar(it) })
 

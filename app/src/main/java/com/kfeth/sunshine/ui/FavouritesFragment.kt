@@ -17,13 +17,13 @@ import com.kfeth.sunshine.utilities.showSnackBar
 import com.kfeth.sunshine.viewmodels.FavouritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_favourites.fab
+import kotlinx.android.synthetic.main.fragment_favourites.recyclerView
 import kotlinx.android.synthetic.main.fragment_favourites.root
 
 @AndroidEntryPoint
 class FavouritesFragment : Fragment() {
 
     private val viewModel: FavouritesViewModel by viewModels()
-    private val adapter = FavouritesAdapter(itemClickListener = { navigateToDetails(it) })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,12 +33,14 @@ class FavouritesFragment : Fragment() {
         return bind<FragmentFavouritesBinding>(R.layout.fragment_favourites, container).apply {
             lifecycleOwner = this@FavouritesFragment
             viewModel = this@FavouritesFragment.viewModel
-            recyclerView.adapter = adapter
+            recyclerView.adapter = FavouritesAdapter(itemClickListener = { navigateToDetails(it) })
         }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.favourites.observe(viewLifecycleOwner, { adapter.submitList(it) })
+        viewModel.favourites.observe(viewLifecycleOwner, {
+            (recyclerView.adapter as FavouritesAdapter).submitList(it)
+        })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, { root.showSnackBar(it) })
 
@@ -51,7 +53,8 @@ class FavouritesFragment : Fragment() {
         onBoardForView(
             view = fab,
             onClick = { navigateToSearch() },
-            onDismissed = { viewModel.onTutorialDismissed() })
+            onDismissed = { viewModel.onTutorialDismissed() }
+        )
     }
 
     private fun navigateToSearch() {

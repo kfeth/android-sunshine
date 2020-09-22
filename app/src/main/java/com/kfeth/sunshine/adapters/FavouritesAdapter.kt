@@ -10,7 +10,7 @@ import com.kfeth.sunshine.data.FavouriteItem
 import com.kfeth.sunshine.databinding.ListItemFavouriteBinding
 import com.kfeth.sunshine.utilities.bind
 
-class FavouritesAdapter(private val itemClickListener: (Int) -> Unit) :
+class FavouritesAdapter(val itemClickListener: (Int) -> Unit) :
     ListAdapter<FavouriteItem, FavouritesAdapter.ViewHolder>(FavouriteItemDiffCallback()) {
 
     init { setHasStableIds(true) }

@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.view_search_bar.editText
 class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModels()
-    private val listAdapter = SearchAdapter(itemClickListener = { navigateToDetails(it) })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +35,7 @@ class SearchFragment : Fragment() {
         return bind<FragmentSearchBinding>(R.layout.fragment_search, container).apply {
             lifecycleOwner = this@SearchFragment
             viewModel = this@SearchFragment.viewModel
-            recyclerView.adapter = listAdapter
+            recyclerView.adapter = SearchAdapter(itemClickListener = { navigateToDetails(it) })
         }.root
     }
 
@@ -47,7 +46,7 @@ class SearchFragment : Fragment() {
         viewModel.errorMessage.observe(viewLifecycleOwner, { root.showSnackBar(it) })
 
         viewModel.resultsList.observe(viewLifecycleOwner, {
-            listAdapter.submitList(it)
+            (recyclerView.adapter as SearchAdapter).submitList(it)
             recyclerView.smoothScrollToPosition(0)
         })
     }
