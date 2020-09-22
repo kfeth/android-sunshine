@@ -4,8 +4,7 @@
     <dimen name="spacing_2">4dp</dimen>
     <dimen name="spacing_3">8dp</dimen>
     <dimen name="spacing_4">16dp</dimen>
-    <dimen name="spacing_5">32dp</dimen>
-    <dimen name="spacing_6">64dp</dimen>
+    <dimen name="spacing_5">64dp</dimen>
 
     <dimen name="current_weather_page_height">190dp</dimen>
 

@@ -17,7 +17,6 @@
     <string name="wind">Wind speed:</string>
     <string name="humidity">Humidity:</string>
     <string name="visibility">Visibility:</string>
-    <string name="uv_index">UV index:</string>
     <string name="daylight_hours">Daylight hours:</string>
     <string name="last_update">last update</string>
 
