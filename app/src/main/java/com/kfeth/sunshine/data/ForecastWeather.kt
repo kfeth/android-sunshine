@@ -3,7 +3,7 @@ package com.kfeth.sunshine.data
 import androidx.room.Entity
 import java.time.OffsetDateTime
 
-@Entity(tableName = "forecast", primaryKeys= [ "weatherId", "date" ])
+@Entity(tableName = "forecast", primaryKeys = [ "weatherId", "date" ])
 data class ForecastWeather(
     val weatherId: Int,
     val iconId: String,

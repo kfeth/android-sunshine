@@ -55,7 +55,6 @@ object NetworkModule {
             .addInterceptor(httpLoggingInterceptor)
             .build()
 
-
     @Singleton
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =

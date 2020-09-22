@@ -38,4 +38,3 @@ class RefreshWeatherWorker @WorkerInject constructor(
         return Result.success()
     }
 }
-
