@@ -68,7 +68,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/semi_transparent"
                     android:padding="@dimen/spacing_1"
-                    android:src="@mipmap/ic_launcher"
                     android:text="@{favourite.addressString}"
                     android:textColor="@android:color/white"
                     app:layout_constraintStart_toStartOf="parent"
