@@ -2,18 +2,22 @@ package com.kfeth.sunshine.adapters
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.FavouriteItem
 import com.kfeth.sunshine.databinding.ListItemFavouriteBinding
+import com.kfeth.sunshine.ui.FavouritesFragmentDirections.Companion.actionFavouritesFragmentToDetailsFragment
 import com.kfeth.sunshine.utilities.bind
 
-class FavouritesAdapter(val itemClickListener: (Int) -> Unit) :
+class FavouritesAdapter :
     ListAdapter<FavouriteItem, FavouritesAdapter.ViewHolder>(FavouriteItemDiffCallback()) {
 
-    init { setHasStableIds(true) }
+    init {
+        setHasStableIds(true)
+    }
 
     override fun getItemId(position: Int): Long {
         return getItem(position).id.toLong()
@@ -24,16 +28,27 @@ class FavouritesAdapter(val itemClickListener: (Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), itemClickListener)
+        holder.bind(getItem(position))
     }
 
     class ViewHolder(private val binding: ListItemFavouriteBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FavouriteItem, itemClickListener: (Int) -> Unit) {
+
+        init {
+            binding.setClickListener { navigateToDetails(binding.favourite, it) }
+        }
+
+        fun bind(item: FavouriteItem) {
             binding.apply {
                 favourite = item
-                clickListener = View.OnClickListener { itemClickListener(item.id) }
                 executePendingBindings()
+            }
+        }
+
+        private fun navigateToDetails(favourite: FavouriteItem?, view: View) {
+            favourite?.let {
+                val direction = actionFavouritesFragmentToDetailsFragment(favourite.id)
+                view.findNavController().navigate(direction)
             }
         }
     }
