@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -24,18 +23,8 @@ fun <T : ViewDataBinding> ViewGroup.bind(@LayoutRes layoutRes: Int): T {
     return DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
 }
 
-fun <T : ViewDataBinding> AppCompatActivity.bind(@LayoutRes layoutRes: Int): T {
-    return DataBindingUtil.setContentView(this, layoutRes)
-}
-
-fun <T : ViewDataBinding> Fragment.bind(@LayoutRes layoutRes: Int, container: ViewGroup?): T {
-    return DataBindingUtil.inflate(layoutInflater, layoutRes, container, false)
-}
-
 fun View.showSnackBar(message: String?) {
-    if (message != null) {
-        Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
-    }
+    message?.let { Snackbar.make(this, message, Snackbar.LENGTH_LONG).show() }
 }
 
 fun EditText.requestKeyboardFocus() {
