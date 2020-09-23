@@ -7,19 +7,15 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.kfeth.sunshine.R
 import com.kfeth.sunshine.adapters.SearchAdapter
 import com.kfeth.sunshine.databinding.FragmentSearchBinding
-import com.kfeth.sunshine.ui.SearchFragmentDirections.Companion.actionSearchFragmentToDetailsFragment
-import com.kfeth.sunshine.utilities.bind
 import com.kfeth.sunshine.utilities.hideKeyboard
 import com.kfeth.sunshine.utilities.requestKeyboardFocus
 import com.kfeth.sunshine.utilities.showSnackBar
 import com.kfeth.sunshine.viewmodels.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_search.recyclerView
 import kotlinx.android.synthetic.main.fragment_search.root
+import kotlinx.android.synthetic.main.fragment_search.searchResultsList
 import kotlinx.android.synthetic.main.view_search_bar.editText
 
 @AndroidEntryPoint
@@ -32,32 +28,35 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return bind<FragmentSearchBinding>(R.layout.fragment_search, container).apply {
+        val binding = FragmentSearchBinding.inflate(inflater, container, false)
+        val adapter = SearchAdapter()
+
+        binding.apply {
             lifecycleOwner = this@SearchFragment
             viewModel = this@SearchFragment.viewModel
-            recyclerView.adapter = SearchAdapter(itemClickListener = { navigateToDetails(it) })
-        }.root
+            searchResultsList.adapter = adapter
+        }
+
+        binding.search.editText.doAfterTextChanged { viewModel.setQuery(it.toString()) }
+        subscribeUi(adapter)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         editText.requestKeyboardFocus()
-        editText.doAfterTextChanged { viewModel.setQuery(it.toString()) }
+    }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner, { root.showSnackBar(it) })
+    private fun subscribeUi(adapter: SearchAdapter) {
+        viewModel.errorMessage.observe(viewLifecycleOwner) { root.showSnackBar(it) }
 
-        viewModel.resultsList.observe(viewLifecycleOwner, {
-            (recyclerView.adapter as SearchAdapter).submitList(it)
-            recyclerView.smoothScrollToPosition(0)
-        })
+        viewModel.resultsList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+            searchResultsList.smoothScrollToPosition(0)
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         hideKeyboard()
-    }
-
-    private fun navigateToDetails(weatherId: Int) {
-        val action = actionSearchFragmentToDetailsFragment(weatherId)
-        findNavController().navigate(action)
     }
 }
