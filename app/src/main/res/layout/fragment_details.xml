@@ -17,7 +17,7 @@
         android:layout_height="match_parent">
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
+            android:id="@+id/currentWeatherViewPager"
             android:layout_width="match_parent"
             android:layout_height="@dimen/current_weather_page_height"
             android:background="@color/colorPrimary"
@@ -29,7 +29,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/viewPager"
+            app:layout_constraintBottom_toBottomOf="@+id/currentWeatherViewPager"
             app:tabBackground="@drawable/tab_selector"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp" />
@@ -39,12 +39,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager"
+            app:layout_constraintTop_toBottomOf="@+id/currentWeatherViewPager"
             app:onRefreshListener="@{() -> viewModel.onPullToRefresh()}"
             app:refreshing="@{viewModel.isLoading()}">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/forecastRecyclerView"
+                android:id="@+id/forecastList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
@@ -55,7 +55,7 @@
                 app:dividers="@{true}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPager"
+                app:layout_constraintTop_toBottomOf="@+id/currentWeatherViewPager"
                 tools:listitem="@layout/list_item_forecast" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
