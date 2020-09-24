@@ -7,8 +7,8 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.kfeth.sunshine.BuildConfig
 import com.kfeth.sunshine.api.WeatherService
-import com.kfeth.sunshine.data.db.WeatherDao
 import com.kfeth.sunshine.data.api.asWeatherUpdate
+import com.kfeth.sunshine.data.db.WeatherDao
 import com.kfeth.sunshine.data.entity.joinIdsToString
 import kotlinx.coroutines.flow.first
 import timber.log.Timber

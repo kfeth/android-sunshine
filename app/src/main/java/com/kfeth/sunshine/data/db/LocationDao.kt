@@ -18,5 +18,4 @@ interface LocationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLocations(locations: List<WeatherLocation>)
-
 }
