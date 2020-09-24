@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.ForecastWeather
 import com.kfeth.sunshine.databinding.ListItemForecastBinding
-import com.kfeth.sunshine.utilities.bind
+import com.kfeth.sunshine.utils.bind
 
 class ForecastAdapter :
     ListAdapter<ForecastWeather, ForecastAdapter.ViewHolder>(ForecastDiffCallback()) {

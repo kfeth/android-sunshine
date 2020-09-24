@@ -6,9 +6,9 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import com.kfeth.sunshine.data.WeatherLocation
 import com.kfeth.sunshine.data.WeatherRepository
-import com.kfeth.sunshine.utilities.Resource
-import com.kfeth.sunshine.utilities.isLoading
-import com.kfeth.sunshine.utilities.sanitise
+import com.kfeth.sunshine.utils.Resource
+import com.kfeth.sunshine.utils.isLoading
+import com.kfeth.sunshine.utils.sanitise
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flatMapLatest

@@ -9,7 +9,7 @@ import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.kfeth.sunshine.data.WeatherRepository
-import com.kfeth.sunshine.utilities.isLoading
+import com.kfeth.sunshine.utils.isLoading
 import kotlinx.coroutines.launch
 
 class DetailsViewModel @ViewModelInject constructor(

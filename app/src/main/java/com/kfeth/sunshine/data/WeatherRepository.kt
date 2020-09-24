@@ -3,7 +3,7 @@ package com.kfeth.sunshine.data
 import com.kfeth.sunshine.BuildConfig.REVERSE_GEOCODE_API_URL
 import com.kfeth.sunshine.api.GeocodeService
 import com.kfeth.sunshine.api.WeatherService
-import com.kfeth.sunshine.utilities.networkBoundResource
+import com.kfeth.sunshine.utils.networkBoundResource
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.delay

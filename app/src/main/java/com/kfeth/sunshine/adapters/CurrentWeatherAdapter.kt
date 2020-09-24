@@ -7,7 +7,7 @@ import com.kfeth.sunshine.data.CurrentWeather
 import com.kfeth.sunshine.databinding.ListItemWeatherStatsBinding
 import com.kfeth.sunshine.databinding.ListItemWeatherSummaryBinding
 import com.kfeth.sunshine.databinding.ListItemWeatherSunlightBinding
-import com.kfeth.sunshine.utilities.bind
+import com.kfeth.sunshine.utils.bind
 
 class CurrentWeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

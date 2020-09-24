@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.kfeth.sunshine.BuildConfig.FLAG_ICON_URL
 import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.ForecastWeather
-import com.kfeth.sunshine.utilities.toWeatherIconDrawable
+import com.kfeth.sunshine.utils.toWeatherIconDrawable
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter.ofPattern
 

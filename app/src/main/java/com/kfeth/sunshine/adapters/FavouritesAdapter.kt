@@ -10,7 +10,7 @@ import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.FavouriteItem
 import com.kfeth.sunshine.databinding.ListItemFavouriteBinding
 import com.kfeth.sunshine.ui.FavouritesFragmentDirections.Companion.actionFavouritesFragmentToDetailsFragment
-import com.kfeth.sunshine.utilities.bind
+import com.kfeth.sunshine.utils.bind
 
 class FavouritesAdapter :
     ListAdapter<FavouriteItem, FavouritesAdapter.ViewHolder>(FavouriteItemDiffCallback()) {

@@ -1,6 +1,6 @@
 package com.kfeth.sunshine.data
 
-import com.kfeth.sunshine.utilities.toOffsetDateTime
+import com.kfeth.sunshine.utils.toOffsetDateTime
 import com.squareup.moshi.Json
 import java.util.Locale
 

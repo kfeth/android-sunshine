@@ -10,7 +10,7 @@ import com.kfeth.sunshine.R
 import com.kfeth.sunshine.data.WeatherLocation
 import com.kfeth.sunshine.databinding.ListItemSearchResultBinding
 import com.kfeth.sunshine.ui.SearchFragmentDirections.Companion.actionSearchFragmentToDetailsFragment
-import com.kfeth.sunshine.utilities.bind
+import com.kfeth.sunshine.utils.bind
 
 class SearchAdapter :
     ListAdapter<WeatherLocation, SearchAdapter.ViewHolder>(WeatherLocationDiffCallback()) {
