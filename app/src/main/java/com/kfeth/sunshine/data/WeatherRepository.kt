@@ -3,6 +3,14 @@ package com.kfeth.sunshine.data
 import com.kfeth.sunshine.BuildConfig.REVERSE_GEOCODE_API_URL
 import com.kfeth.sunshine.api.GeocodeService
 import com.kfeth.sunshine.api.WeatherService
+import com.kfeth.sunshine.data.api.GeocodeResponse
+import com.kfeth.sunshine.data.api.asCurrentWeather
+import com.kfeth.sunshine.data.api.asForecast
+import com.kfeth.sunshine.data.api.asLocations
+import com.kfeth.sunshine.data.api.asWeatherUpdate
+import com.kfeth.sunshine.data.db.WeatherDao
+import com.kfeth.sunshine.data.entity.Favourites
+import com.kfeth.sunshine.data.entity.joinIdsToString
 import com.kfeth.sunshine.utils.networkBoundResource
 import javax.inject.Inject
 import javax.inject.Singleton

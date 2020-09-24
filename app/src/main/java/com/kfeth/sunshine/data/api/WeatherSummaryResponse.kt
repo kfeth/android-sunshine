@@ -1,12 +1,14 @@
-package com.kfeth.sunshine.data
+package com.kfeth.sunshine.data.api
 
+import com.kfeth.sunshine.data.entity.WeatherLocation
+import com.kfeth.sunshine.data.entity.WeatherUpdate
 import com.squareup.moshi.Json
 
-data class WeatherSummaryResponse(
+class WeatherSummaryResponse(
     @Json(name = "list") val list: List<WeatherResponse>
 )
 
-data class WeatherResponse(
+class WeatherResponse(
     @Json(name = "id") val id: Int,
     @Json(name = "name") val name: String,
     @Json(name = "coord") val coordinates: CoordinatesResponse,
@@ -15,21 +17,21 @@ data class WeatherResponse(
     @Json(name = "sys") val system: SystemResponse
 )
 
-data class CoordinatesResponse(
+class CoordinatesResponse(
     @Json(name = "lat") val latitude: Double,
     @Json(name = "lon") val longitude: Double
 )
 
-data class EnvironmentResponse(
+class EnvironmentResponse(
     @Json(name = "temp") val temperature: Double
 )
 
-data class ConditionResponse(
+class ConditionResponse(
     @Json(name = "icon") val iconId: String,
     @Json(name = "description") val description: String
 )
 
-data class SystemResponse(
+class SystemResponse(
     @Json(name = "country") val countryCode: String
 )
 

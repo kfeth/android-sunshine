@@ -3,7 +3,7 @@ package com.kfeth.sunshine.adapters
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.data.CurrentWeather
+import com.kfeth.sunshine.data.entity.CurrentWeather
 import com.kfeth.sunshine.databinding.ListItemWeatherStatsBinding
 import com.kfeth.sunshine.databinding.ListItemWeatherSummaryBinding
 import com.kfeth.sunshine.databinding.ListItemWeatherSunlightBinding

@@ -1,8 +1,10 @@
-package com.kfeth.sunshine.data
+package com.kfeth.sunshine.data.entity
 
+import androidx.room.Entity
 import androidx.room.Ignore
 import com.kfeth.sunshine.BuildConfig.STATIC_MAP_URL
 
+@Entity
 data class FavouriteItem(
     val id: Int,
     val name: String,

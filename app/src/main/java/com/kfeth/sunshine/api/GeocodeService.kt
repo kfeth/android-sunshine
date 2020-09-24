@@ -1,6 +1,6 @@
 package com.kfeth.sunshine.api
 
-import com.kfeth.sunshine.data.GeocodeResponse
+import com.kfeth.sunshine.data.api.GeocodeResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Url

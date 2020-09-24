@@ -1,4 +1,4 @@
-package com.kfeth.sunshine.data
+package com.kfeth.sunshine.data.db
 
 import androidx.room.TypeConverter
 import java.time.OffsetDateTime

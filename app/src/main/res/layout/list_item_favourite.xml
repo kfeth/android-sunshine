@@ -11,7 +11,7 @@
 
         <variable
             name="favourite"
-            type="com.kfeth.sunshine.data.FavouriteItem" />
+            type="com.kfeth.sunshine.data.entity.FavouriteItem" />
     </data>
 
     <androidx.cardview.widget.CardView

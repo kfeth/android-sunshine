@@ -1,10 +1,16 @@
-package com.kfeth.sunshine.data
+package com.kfeth.sunshine.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.kfeth.sunshine.data.entity.CurrentWeather
+import com.kfeth.sunshine.data.entity.FavouriteItem
+import com.kfeth.sunshine.data.entity.Favourites
+import com.kfeth.sunshine.data.entity.ForecastWeather
+import com.kfeth.sunshine.data.entity.WeatherLocation
+import com.kfeth.sunshine.data.entity.WeatherUpdate
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.data.WeatherLocation
+import com.kfeth.sunshine.data.entity.WeatherLocation
 import com.kfeth.sunshine.databinding.ListItemSearchResultBinding
 import com.kfeth.sunshine.ui.SearchFragmentDirections.Companion.actionSearchFragmentToDetailsFragment
 import com.kfeth.sunshine.utils.bind

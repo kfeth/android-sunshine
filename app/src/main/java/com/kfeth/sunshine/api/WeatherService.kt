@@ -1,8 +1,8 @@
 package com.kfeth.sunshine.api
 
 import com.kfeth.sunshine.BuildConfig.WEATHER_API_KEY
-import com.kfeth.sunshine.data.WeatherDetailsResponse
-import com.kfeth.sunshine.data.WeatherSummaryResponse
+import com.kfeth.sunshine.data.api.WeatherDetailsResponse
+import com.kfeth.sunshine.data.api.WeatherSummaryResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

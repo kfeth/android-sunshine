@@ -1,16 +1,18 @@
-package com.kfeth.sunshine.data
+package com.kfeth.sunshine.data.api
 
+import com.kfeth.sunshine.data.entity.CurrentWeather
+import com.kfeth.sunshine.data.entity.ForecastWeather
 import com.kfeth.sunshine.utils.toOffsetDateTime
 import com.squareup.moshi.Json
 import java.util.Locale
 
-data class WeatherDetailsResponse(
+class WeatherDetailsResponse(
     @Json(name = "timezone_offset") val timezoneOffset: Int,
     @Json(name = "current") val current: CurrentWeatherResponse,
     @Json(name = "daily") val daily: List<ForecastResponse>
 )
 
-data class CurrentWeatherResponse(
+class CurrentWeatherResponse(
     @Json(name = "dt") val date: Long,
     @Json(name = "sunrise") val sunrise: Long,
     @Json(name = "sunset") val sunset: Long,
@@ -22,7 +24,7 @@ data class CurrentWeatherResponse(
     @Json(name = "weather") val conditions: List<ConditionResponse>
 )
 
-data class ForecastResponse(
+class ForecastResponse(
     @Json(name = "dt") val date: Long,
     @Json(name = "sunrise") val sunrise: Long,
     @Json(name = "sunset") val sunset: Long,
@@ -33,7 +35,7 @@ data class ForecastResponse(
     @Json(name = "weather") val conditions: List<ConditionResponse>
 )
 
-data class TemperatureResponse(
+class TemperatureResponse(
     @Json(name = "min") val min: Double,
     @Json(name = "max") val max: Double
 )

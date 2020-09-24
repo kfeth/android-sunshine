@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.data.ForecastWeather
+import com.kfeth.sunshine.data.entity.ForecastWeather
 import com.kfeth.sunshine.databinding.ListItemForecastBinding
 import com.kfeth.sunshine.utils.bind
 

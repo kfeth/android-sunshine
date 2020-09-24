@@ -1,8 +1,8 @@
-package com.kfeth.sunshine.data
+package com.kfeth.sunshine.data.api
 
 import com.squareup.moshi.Json
 
-data class GeocodeResponse(
+class GeocodeResponse(
     @Json(name = "principalSubdivision") val principalSubdivision: String,
     @Json(name = "countryName") val countryName: String
 ) {

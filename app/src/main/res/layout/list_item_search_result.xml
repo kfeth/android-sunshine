@@ -11,7 +11,7 @@
 
         <variable
             name="weatherLocation"
-            type="com.kfeth.sunshine.data.WeatherLocation" />
+            type="com.kfeth.sunshine.data.entity.WeatherLocation" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

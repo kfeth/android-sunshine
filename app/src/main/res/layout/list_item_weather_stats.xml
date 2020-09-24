@@ -7,7 +7,7 @@
 
         <variable
             name="weather"
-            type="com.kfeth.sunshine.data.CurrentWeather" />
+            type="com.kfeth.sunshine.data.entity.CurrentWeather" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

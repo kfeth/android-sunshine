@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kfeth.sunshine.R
-import com.kfeth.sunshine.data.FavouriteItem
+import com.kfeth.sunshine.data.entity.FavouriteItem
 import com.kfeth.sunshine.databinding.ListItemFavouriteBinding
 import com.kfeth.sunshine.ui.FavouritesFragmentDirections.Companion.actionFavouritesFragmentToDetailsFragment
 import com.kfeth.sunshine.utils.bind
