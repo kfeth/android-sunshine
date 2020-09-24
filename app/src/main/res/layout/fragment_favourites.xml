@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_4"
             android:text="@string/no_favourites_added"
+            android:textColor="@color/grey"
             android:visibility="@{viewModel.favourites.empty ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
