@@ -8,6 +8,7 @@ import com.kfeth.sunshine.data.api.asCurrentWeather
 import com.kfeth.sunshine.data.api.asForecast
 import com.kfeth.sunshine.data.api.asLocations
 import com.kfeth.sunshine.data.api.asWeatherUpdate
+import com.kfeth.sunshine.data.db.LocationDao
 import com.kfeth.sunshine.data.db.WeatherDao
 import com.kfeth.sunshine.data.entity.Favourites
 import com.kfeth.sunshine.data.entity.joinIdsToString
@@ -21,19 +22,20 @@ import kotlinx.coroutines.flow.first
 @Singleton
 class WeatherRepository @Inject constructor(
     private val weatherDao: WeatherDao,
+    private val locationDao: LocationDao,
     private val weatherService: WeatherService,
     private val geocodeService: GeocodeService
 ) {
 
     fun searchWeatherLocations(query: String) = networkBoundResource(
         shouldFetch = { query.length >= 3 },
-        query = { weatherDao.searchLocations(query) },
+        query = { locationDao.searchLocations(query) },
         fetch = {
             delay(750)
             weatherService.searchLocations(query)
         },
         saveFetchResult = {
-            weatherDao.insertLocations(it.asLocations(query).map { item ->
+            locationDao.insertLocations(it.asLocations(query).map { item ->
                 item.copy(addressString = reverseGeocode(item.latitude, item.longitude).address)
             })
         }
@@ -42,7 +44,7 @@ class WeatherRepository @Inject constructor(
     fun getWeatherDetails(weatherId: Int) = networkBoundResource(
         query = { weatherDao.getCurrentWeather(weatherId) },
         fetch = {
-            val location = weatherDao.getWeatherLocation(weatherId).first()
+            val location = locationDao.getLocation(weatherId).first()
             weatherService.weatherForLocation(location.latitude, location.longitude)
         },
         saveFetchResult = {
@@ -61,7 +63,7 @@ class WeatherRepository @Inject constructor(
         saveFetchResult = { weatherDao.updateWeather(it.asWeatherUpdate()) }
     )
 
-    fun getWeatherLocation(weatherId: Int) = weatherDao.getWeatherLocation(weatherId)
+    fun getWeatherLocation(weatherId: Int) = locationDao.getLocation(weatherId)
 
     fun getForecast(weatherId: Int) = weatherDao.getForecast(weatherId)
 

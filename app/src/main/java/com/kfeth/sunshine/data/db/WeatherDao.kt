@@ -9,27 +9,17 @@ import com.kfeth.sunshine.data.entity.CurrentWeather
 import com.kfeth.sunshine.data.entity.FavouriteItem
 import com.kfeth.sunshine.data.entity.Favourites
 import com.kfeth.sunshine.data.entity.ForecastWeather
-import com.kfeth.sunshine.data.entity.WeatherLocation
 import com.kfeth.sunshine.data.entity.WeatherUpdate
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WeatherDao {
 
-    @Query("SELECT * FROM locations WHERE queryString LIKE :query || '%' ORDER BY name")
-    fun searchLocations(query: String): Flow<List<WeatherLocation>>
-
-    @Query("SELECT * FROM locations WHERE id = :weatherId")
-    fun getWeatherLocation(weatherId: Int): Flow<WeatherLocation>
-
     @Query("SELECT * FROM weather WHERE id = :weatherId")
     fun getCurrentWeather(weatherId: Int): Flow<CurrentWeather>
 
     @Query("SELECT * FROM forecast WHERE weatherId = :weatherId")
     fun getForecast(weatherId: Int): Flow<List<ForecastWeather>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLocations(locations: List<WeatherLocation>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCurrentWeather(currentWeather: CurrentWeather)

@@ -3,6 +3,7 @@ package com.kfeth.sunshine.di
 import android.content.Context
 import androidx.room.Room
 import com.kfeth.sunshine.data.db.AppDatabase
+import com.kfeth.sunshine.data.db.LocationDao
 import com.kfeth.sunshine.data.db.WeatherDao
 import dagger.Module
 import dagger.Provides
@@ -29,5 +30,11 @@ object DatabaseModule {
     @Singleton
     fun provideWeatherDao(database: AppDatabase): WeatherDao {
         return database.weatherDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationDao(database: AppDatabase): LocationDao {
+        return database.locationDao()
     }
 }

@@ -22,4 +22,6 @@ import com.kfeth.sunshine.data.entity.WeatherLocation
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao
+
+    abstract fun locationDao(): LocationDao
 }
