@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.kfeth.sunshine.adapters.CurrentWeatherAdapter
 import com.kfeth.sunshine.adapters.ForecastAdapter
 import com.kfeth.sunshine.databinding.FragmentDetailsBinding
-import com.kfeth.sunshine.utilities.showSnackBar
+import com.kfeth.sunshine.utils.showSnackBar
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_details.root

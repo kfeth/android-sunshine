@@ -1,4 +1,4 @@
-package com.kfeth.sunshine.utilities
+package com.kfeth.sunshine.utils
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
 

@@ -1,4 +1,4 @@
-package com.kfeth.sunshine.utilities
+package com.kfeth.sunshine.utils
 
 import android.content.Context
 import android.view.LayoutInflater

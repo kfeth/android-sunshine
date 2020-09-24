@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kfeth.sunshine.adapters.SearchAdapter
 import com.kfeth.sunshine.databinding.FragmentSearchBinding
-import com.kfeth.sunshine.utilities.hideKeyboard
-import com.kfeth.sunshine.utilities.requestKeyboardFocus
-import com.kfeth.sunshine.utilities.showSnackBar
+import com.kfeth.sunshine.utils.hideKeyboard
+import com.kfeth.sunshine.utils.requestKeyboardFocus
+import com.kfeth.sunshine.utils.showSnackBar
 import com.kfeth.sunshine.viewmodels.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search.root

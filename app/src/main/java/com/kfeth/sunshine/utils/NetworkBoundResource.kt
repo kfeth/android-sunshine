@@ -1,4 +1,4 @@
-package com.kfeth.sunshine.utilities
+package com.kfeth.sunshine.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
