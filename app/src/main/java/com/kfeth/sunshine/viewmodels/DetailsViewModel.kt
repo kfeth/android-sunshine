@@ -27,19 +27,6 @@ class DetailsViewModel @ViewModelInject constructor(
         repository.getWeatherDetails(it).asLiveData()
     }
 
-    val forecast = weatherId.switchMap {
-        repository.getForecast(it).asLiveData()
-    }
-
-    val isFavourite = weatherId.switchMap {
-        repository.isFavourite(it).asLiveData()
-    }
-
-    val currentWeather = resource.map { it.data }
-    val title = location.map { it.name }
-    val isLoading = resource.map { it.isLoading() }
-    val errorMessage = resource.map { it.message }
-
     fun onPullToRefresh() {
         val id = weatherId.value
         weatherId.value = id
@@ -50,4 +37,12 @@ class DetailsViewModel @ViewModelInject constructor(
             repository.toggleFavourite(weatherId.value ?: 0)
         }
     }
+
+    val currentWeather = resource.map { it.data }
+    val forecast = weatherId.switchMap { repository.getForecast(it).asLiveData() }
+    val isFavourite = weatherId.switchMap { repository.isFavourite(it).asLiveData() }
+    val title = location.map { it.name }
+
+    val isLoading = resource.map { it.isLoading() }
+    val errorMessage = resource.map { it.message }
 }
