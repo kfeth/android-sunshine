@@ -17,9 +17,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_3"
         android:background="?android:attr/selectableItemBackground"
         android:onClick="@{clickListener}"
-        android:layout_marginEnd="@dimen/spacing_3"
         android:paddingTop="@dimen/spacing_3"
         android:paddingBottom="@dimen/spacing_3">
 
@@ -50,10 +50,10 @@
             android:id="@+id/subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_4"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{weatherLocation.addressString}"
-            android:layout_marginBottom="@dimen/spacing_4"
             android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/flagIcon"
