@@ -3,7 +3,6 @@ package com.kfeth.sunshine.data
 import com.kfeth.sunshine.BuildConfig.REVERSE_GEOCODE_API_URL
 import com.kfeth.sunshine.api.GeocodeService
 import com.kfeth.sunshine.api.WeatherService
-import com.kfeth.sunshine.utilities.DEBOUNCE_DELAY_MILLIS
 import com.kfeth.sunshine.utilities.networkBoundResource
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,7 +21,7 @@ class WeatherRepository @Inject constructor(
         shouldFetch = { query.length >= 3 },
         query = { weatherDao.searchLocations(query) },
         fetch = {
-            delay(DEBOUNCE_DELAY_MILLIS)
+            delay(750)
             weatherService.searchLocations(query)
         },
         saveFetchResult = {
