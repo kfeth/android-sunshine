@@ -1,4 +1,4 @@
-package com.kfeth.sunshine.work
+package com.kfeth.sunshine.workers
 
 import android.content.Context
 import androidx.hilt.Assisted
