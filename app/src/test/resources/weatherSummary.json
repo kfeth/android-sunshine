@@ -1,0 +1,122 @@
+{
+  "cnt": 3,
+  "list": [
+    {
+      "coord": {
+        "lon": -6.27,
+        "lat": 53.34
+      },
+      "sys": {
+        "country": "IE",
+        "timezone": 3600,
+        "sunrise": 1601879651,
+        "sunset": 1601920341
+      },
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "main": {
+        "temp": 12.19,
+        "feels_like": 9.11,
+        "temp_min": 11.67,
+        "temp_max": 13,
+        "pressure": 996,
+        "humidity": 81
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 4.1,
+        "deg": 260
+      },
+      "clouds": {
+        "all": 75
+      },
+      "dt": 1601917890,
+      "id": 2964574,
+      "name": "Dublin"
+    },
+    {
+      "coord": {
+        "lon": 2.35,
+        "lat": 48.85
+      },
+      "sys": {
+        "country": "FR",
+        "timezone": 7200,
+        "sunrise": 1601877375,
+        "sunset": 1601918480
+      },
+      "weather": [
+        {
+          "id": 300,
+          "main": "Drizzle",
+          "description": "light intensity drizzle",
+          "icon": "09d"
+        }
+      ],
+      "main": {
+        "temp": 13.04,
+        "feels_like": 8.6,
+        "temp_min": 12.22,
+        "temp_max": 13.89,
+        "pressure": 1003,
+        "humidity": 93
+      },
+      "visibility": 8000,
+      "wind": {
+        "speed": 7.2,
+        "deg": 250
+      },
+      "clouds": {
+        "all": 90
+      },
+      "dt": 1601917891,
+      "id": 2988507,
+      "name": "Paris"
+    },
+    {
+      "coord": {
+        "lon": -0.13,
+        "lat": 51.51
+      },
+      "sys": {
+        "country": "GB",
+        "timezone": 3600,
+        "sunrise": 1601878087,
+        "sunset": 1601918958
+      },
+      "weather": [
+        {
+          "id": 500,
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10d"
+        }
+      ],
+      "main": {
+        "temp": 14.31,
+        "feels_like": 10.72,
+        "temp_min": 13.33,
+        "temp_max": 15,
+        "pressure": 996,
+        "humidity": 82
+      },
+      "visibility": 7000,
+      "wind": {
+        "speed": 5.7,
+        "deg": 240
+      },
+      "clouds": {
+        "all": 90
+      },
+      "dt": 1601917829,
+      "id": 2643743,
+      "name": "London"
+    }
+  ]
+}
