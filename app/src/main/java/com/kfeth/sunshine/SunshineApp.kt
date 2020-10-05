@@ -17,7 +17,6 @@ import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import leakcanary.LeakCanary
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -38,7 +37,6 @@ class SunshineApp : Application(), Configuration.Provider {
         applicationScope.launch {
             setupNightMode()
             setupTimber()
-            setupLeakCanary()
             setupPeriodicWork()
         }
     }
@@ -49,11 +47,6 @@ class SunshineApp : Application(), Configuration.Provider {
 
     private fun setupTimber() {
         if (BuildConfig.DEBUG) { Timber.plant(DebugTree()) }
-    }
-
-    private fun setupLeakCanary() {
-        LeakCanary.config = LeakCanary.config.copy(dumpHeap = false)
-        LeakCanary.showLeakDisplayActivityLauncherIcon(false)
     }
 
     private fun setupPeriodicWork() {
