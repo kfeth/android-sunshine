@@ -1,9 +1,8 @@
 package com.kfeth.sunshine.data.api
 
 import com.kfeth.sunshine.data.TestUtils.parseResource
-import org.hamcrest.CoreMatchers.equalTo
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
 class WeatherDetailsResponseTest {
@@ -14,36 +13,36 @@ class WeatherDetailsResponseTest {
     fun convertToCurrentWeather() {
         val weather = response.asCurrentWeather(weatherId = 101)
 
-        assertEquals(101, weather.id)
-        assertEquals("04d", weather.iconId)
-        assertEquals("Broken clouds", weather.description)
-        assertThat(12.34, equalTo(weather.temperature))
-        assertEquals(996, weather.pressure)
-        assertEquals(81, weather.humidity)
-        assertEquals(10000, weather.visibility)
-        assertThat(6.2, equalTo(weather.windSpeed))
-        assertEquals("2020-10-05T17:46:52+01:00", weather.date.toString())
-        assertEquals("2020-10-05T07:33:45+01:00", weather.sunrise.toString())
-        assertEquals("2020-10-05T18:51:30+01:00", weather.sunset.toString())
+        assertThat(weather.id, `is`(101))
+        assertThat(weather.iconId, `is`("04d"))
+        assertThat(weather.description, `is`("Broken clouds"))
+        assertThat(weather.temperature, `is`(12.34))
+        assertThat(weather.pressure, `is`(996))
+        assertThat(weather.humidity, `is`(81))
+        assertThat(weather.visibility, `is`(10000))
+        assertThat(weather.windSpeed, `is`(6.2))
+        assertThat(weather.date.toString(), `is`("2020-10-05T17:46:52+01:00"))
+        assertThat(weather.sunrise.toString(), `is`("2020-10-05T07:33:45+01:00"))
+        assertThat(weather.sunset.toString(), `is`("2020-10-05T18:51:30+01:00"))
     }
 
     @Test
     fun convertToForecast() {
         val forecast = response.asForecast(weatherId = 101)
-        assertEquals(8, forecast.size)
+        assertThat(forecast.size, `is`(8))
 
         val last = forecast.last()
 
-        assertEquals(101, last.weatherId)
-        assertEquals("10d", last.iconId)
-        assertEquals("Light rain", last.description)
-        assertThat(7.09, equalTo(last.minTemperature))
-        assertThat(10.37, equalTo(last.maxTemperature))
-        assertEquals(1025, last.pressure)
-        assertEquals(74, last.humidity)
-        assertThat(3.09, equalTo(last.windSpeed))
-        assertEquals("2020-10-12T13:00+01:00", last.date.toString())
-        assertEquals("2020-10-12T07:46:28+01:00", last.sunrise.toString())
-        assertEquals("2020-10-12T18:34:52+01:00", last.sunset.toString())
+        assertThat(last.weatherId, `is`(101))
+        assertThat(last.iconId, `is`("10d"))
+        assertThat(last.description, `is`("Light rain"))
+        assertThat(last.minTemperature, `is`(7.09))
+        assertThat(last.maxTemperature, `is`(10.37))
+        assertThat(last.pressure, `is`(1025))
+        assertThat(last.humidity, `is`(74))
+        assertThat(last.windSpeed, `is`(3.09))
+        assertThat(last.date.toString(), `is`("2020-10-12T13:00+01:00"))
+        assertThat(last.sunrise.toString(), `is`("2020-10-12T07:46:28+01:00"))
+        assertThat(last.sunset.toString(), `is`("2020-10-12T18:34:52+01:00"))
     }
 }

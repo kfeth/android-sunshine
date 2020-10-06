@@ -1,6 +1,7 @@
 package com.kfeth.sunshine.data.db
 
-import org.junit.Assert.assertEquals
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
@@ -20,17 +21,17 @@ class DateConverterTest {
 
     @Test
     fun toOffsetDateTime() {
-        assertEquals(
+        assertThat(
             DateConverter().toOffsetDateTime("2020-10-04T14:30:10+01:00"),
-            offsetDateTime
+            `is`(offsetDateTime)
         )
     }
 
     @Test
     fun fromOffsetDateTime() {
-        assertEquals(
-            "2020-10-04T14:30:10+01:00",
-            DateConverter().fromOffsetDateTime(offsetDateTime)
+        assertThat(
+            DateConverter().fromOffsetDateTime(offsetDateTime),
+            `is`("2020-10-04T14:30:10+01:00")
         )
     }
 }

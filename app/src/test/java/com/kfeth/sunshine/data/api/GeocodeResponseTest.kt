@@ -1,6 +1,7 @@
 package com.kfeth.sunshine.data.api
 
-import org.junit.Assert.assertEquals
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
 class GeocodeResponseTest {
@@ -8,14 +9,12 @@ class GeocodeResponseTest {
     @Test
     fun testAddress_default() {
         val response = GeocodeResponse(principalSubdivision = "Dublin", countryName = "Ireland")
-        assertEquals("Dublin", response.principalSubdivision)
-        assertEquals("Ireland", response.countryName)
-        assertEquals("Dublin", response.address)
+        assertThat(response.address, `is`("Dublin"))
     }
 
     @Test
     fun testAddress_emptySubDivision() {
         val response = GeocodeResponse(principalSubdivision = "", countryName = "Ireland")
-        assertEquals("Ireland", response.address)
+        assertThat(response.address, `is`("Ireland"))
     }
 }
