@@ -1,6 +1,6 @@
 package com.kfeth.sunshine.data.api
 
-import com.kfeth.sunshine.data.TestUtils.parseResource
+import com.kfeth.sunshine.TestUtils.parseResource
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
