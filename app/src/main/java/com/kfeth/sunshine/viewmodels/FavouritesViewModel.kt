@@ -4,7 +4,6 @@ import androidx.datastore.DataStore
 import androidx.datastore.preferences.Preferences
 import androidx.datastore.preferences.edit
 import androidx.datastore.preferences.preferencesKey
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -13,10 +12,13 @@ import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.kfeth.sunshine.data.WeatherRepository
 import com.kfeth.sunshine.utils.isLoading
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavouritesViewModel @ViewModelInject constructor(
+@HiltViewModel
+class FavouritesViewModel @Inject constructor(
     private val repository: WeatherRepository,
     private val dataStore: DataStore<Preferences>
 ) : ViewModel() {

@@ -1,7 +1,5 @@
 package com.kfeth.sunshine.viewmodels
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -10,11 +8,14 @@ import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.kfeth.sunshine.data.WeatherRepository
 import com.kfeth.sunshine.utils.isLoading
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailsViewModel @ViewModelInject constructor(
+@HiltViewModel
+class DetailsViewModel @Inject constructor(
     private val repository: WeatherRepository,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val weatherId = savedStateHandle.getLiveData<Int>("weatherId")
