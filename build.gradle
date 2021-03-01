@@ -35,7 +35,7 @@ buildscript {
         testExtJunitVersion = '1.1.2'
         timberVersion = '4.7.1'
         viewPagerVersion = '1.0.0'
-        workManagerVersion = '2.4.0'
+        workManagerVersion = '2.5.0'
     }
 
     repositories {
