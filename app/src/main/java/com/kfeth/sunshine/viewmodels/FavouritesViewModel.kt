@@ -1,9 +1,9 @@
 package com.kfeth.sunshine.viewmodels
 
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.edit
-import androidx.datastore.preferences.preferencesKey
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -23,7 +23,7 @@ class FavouritesViewModel @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) : ViewModel() {
 
-    private val prefs = preferencesKey<Boolean>("user_on_board")
+    private val prefs = booleanPreferencesKey("user_on_board")
 
     private val refreshEvent = MutableLiveData<Boolean>()
 

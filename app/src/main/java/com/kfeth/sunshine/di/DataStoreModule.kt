@@ -1,9 +1,9 @@
 package com.kfeth.sunshine.di
 
 import android.content.Context
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.createDataStore
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,9 +15,11 @@ import javax.inject.Singleton
 @Module
 object DataStoreModule {
 
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
     @Provides
     @Singleton
     fun provideDataStore(@ApplicationContext appContext: Context): DataStore<Preferences> {
-        return appContext.createDataStore(name = "settings")
+        return appContext.dataStore
     }
 }
