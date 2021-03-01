@@ -14,7 +14,7 @@ fun <ResultType, RequestType> networkBoundResource(
     query: () -> Flow<ResultType>,
     fetch: suspend () -> Response<RequestType>,
     saveFetchResult: suspend (RequestType) -> Unit,
-    onFetchFailed: (Throwable) -> Unit = { Unit },
+    onFetchFailed: (Throwable) -> Unit = { },
     shouldFetch: (ResultType?) -> Boolean = { true }
 ) =
     flow {

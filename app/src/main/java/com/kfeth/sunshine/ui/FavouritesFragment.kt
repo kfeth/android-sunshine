@@ -26,7 +26,7 @@ class FavouritesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentFavouritesBinding.inflate(inflater, container, false)
         val adapter = FavouritesAdapter()
 

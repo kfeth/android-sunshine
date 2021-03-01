@@ -27,7 +27,7 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentSearchBinding.inflate(inflater, container, false)
         val adapter = SearchAdapter()
 
