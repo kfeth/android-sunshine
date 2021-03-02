@@ -14,11 +14,12 @@ import com.kfeth.sunshine.utils.onBoardForView
 import com.kfeth.sunshine.utils.showSnackBar
 import com.kfeth.sunshine.viewmodels.FavouritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_favourites.root
-import kotlinx.android.synthetic.main.fragment_favourites.searchBtn
 
 @AndroidEntryPoint
 class FavouritesFragment : Fragment() {
+
+    private var _binding: FragmentFavouritesBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: FavouritesViewModel by viewModels()
 
@@ -27,7 +28,7 @@ class FavouritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentFavouritesBinding.inflate(inflater, container, false)
+        _binding = FragmentFavouritesBinding.inflate(inflater, container, false)
         val adapter = FavouritesAdapter()
 
         binding.apply {
@@ -43,14 +44,14 @@ class FavouritesFragment : Fragment() {
 
     private fun subscribeUi(adapter: FavouritesAdapter) {
         viewModel.favourites.observe(viewLifecycleOwner) { adapter.submitList(it) }
-        viewModel.errorMessage.observe(viewLifecycleOwner) { root.showSnackBar(it) }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { binding.root.showSnackBar(it) }
         viewModel.userOnBoarded.observe(viewLifecycleOwner) { onBoardUser(it) }
     }
 
     private fun onBoardUser(onBoarded: Boolean) {
         if (onBoarded) { return }
         onBoardForView(
-            view = searchBtn,
+            view = binding.searchBtn,
             onClick = { navigateToSearch() },
             onDismissed = { viewModel.onTutorialDismissed() }
         )
@@ -58,5 +59,10 @@ class FavouritesFragment : Fragment() {
 
     private fun navigateToSearch() {
         findNavController().navigate(R.id.action_favouritesFragment_to_searchFragment)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

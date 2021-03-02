@@ -14,12 +14,12 @@ import com.kfeth.sunshine.utils.requestKeyboardFocus
 import com.kfeth.sunshine.utils.showSnackBar
 import com.kfeth.sunshine.viewmodels.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_search.root
-import kotlinx.android.synthetic.main.fragment_search.searchResultsList
-import kotlinx.android.synthetic.main.view_search_bar.editText
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
+
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: SearchViewModel by viewModels()
 
@@ -28,7 +28,7 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val adapter = SearchAdapter()
 
         binding.apply {
@@ -43,20 +43,21 @@ class SearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        editText.requestKeyboardFocus()
+        binding.search.editText.requestKeyboardFocus()
     }
 
     private fun subscribeUi(adapter: SearchAdapter) {
-        viewModel.errorMessage.observe(viewLifecycleOwner) { root.showSnackBar(it) }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { binding.root.showSnackBar(it) }
 
         viewModel.resultsList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-            searchResultsList.smoothScrollToPosition(0)
+            binding.searchResultsList.smoothScrollToPosition(0)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null
         hideKeyboard()
     }
 }
