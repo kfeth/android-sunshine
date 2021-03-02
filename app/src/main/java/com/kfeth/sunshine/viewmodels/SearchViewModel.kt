@@ -1,6 +1,5 @@
 package com.kfeth.sunshine.viewmodels
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
@@ -9,12 +8,15 @@ import com.kfeth.sunshine.data.entity.WeatherLocation
 import com.kfeth.sunshine.utils.Resource
 import com.kfeth.sunshine.utils.isLoading
 import com.kfeth.sunshine.utils.sanitise
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class SearchViewModel @ViewModelInject constructor(
+@HiltViewModel
+class SearchViewModel @Inject constructor(
     private val repository: WeatherRepository
 ) : ViewModel() {
 

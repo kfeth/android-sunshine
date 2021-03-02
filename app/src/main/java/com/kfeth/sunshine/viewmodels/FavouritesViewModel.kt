@@ -1,10 +1,9 @@
 package com.kfeth.sunshine.viewmodels
 
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.edit
-import androidx.datastore.preferences.preferencesKey
-import androidx.hilt.lifecycle.ViewModelInject
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -13,15 +12,18 @@ import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.kfeth.sunshine.data.WeatherRepository
 import com.kfeth.sunshine.utils.isLoading
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavouritesViewModel @ViewModelInject constructor(
+@HiltViewModel
+class FavouritesViewModel @Inject constructor(
     private val repository: WeatherRepository,
     private val dataStore: DataStore<Preferences>
 ) : ViewModel() {
 
-    private val prefs = preferencesKey<Boolean>("user_on_board")
+    private val prefs = booleanPreferencesKey("user_on_board")
 
     private val refreshEvent = MutableLiveData<Boolean>()
 

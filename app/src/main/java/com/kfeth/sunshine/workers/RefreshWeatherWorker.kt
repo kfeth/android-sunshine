@@ -1,8 +1,7 @@
 package com.kfeth.sunshine.workers
 
 import android.content.Context
-import androidx.hilt.Assisted
-import androidx.hilt.work.WorkerInject
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.kfeth.sunshine.BuildConfig
@@ -10,10 +9,13 @@ import com.kfeth.sunshine.api.WeatherService
 import com.kfeth.sunshine.data.api.asWeatherUpdate
 import com.kfeth.sunshine.data.db.WeatherDao
 import com.kfeth.sunshine.data.entity.joinIdsToString
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.first
 import timber.log.Timber
 
-class RefreshWeatherWorker @WorkerInject constructor(
+@HiltWorker
+class RefreshWeatherWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val weatherService: WeatherService,

@@ -14,10 +14,12 @@ import com.kfeth.sunshine.databinding.FragmentDetailsBinding
 import com.kfeth.sunshine.utils.showSnackBar
 import com.kfeth.sunshine.viewmodels.DetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_details.root
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
+
+    private var _binding: FragmentDetailsBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: DetailsViewModel by viewModels()
 
@@ -25,8 +27,8 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentDetailsBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val currentWeatherAdapter = CurrentWeatherAdapter()
         val forecastAdapter = ForecastAdapter()
 
@@ -47,12 +49,23 @@ class DetailsFragment : Fragment() {
         forecastAdapter: ForecastAdapter
     ) {
         viewModel.apply {
-            currentWeather.observe(viewLifecycleOwner) { currentWeatherAdapter.replace(it) }
-            forecast.observe(viewLifecycleOwner) { forecastAdapter.submitList(it) }
-            errorMessage.observe(viewLifecycleOwner) { root.showSnackBar(it) }
+            currentWeather.observe(viewLifecycleOwner) {
+                currentWeatherAdapter.replace(it)
+            }
+            forecast.observe(viewLifecycleOwner) {
+                forecastAdapter.submitList(it)
+            }
+            errorMessage.observe(viewLifecycleOwner) {
+                binding.root.showSnackBar(it)
+            }
             title.observe(viewLifecycleOwner) {
                 (activity as AppCompatActivity).supportActionBar?.title = it
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
