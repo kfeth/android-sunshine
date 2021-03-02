@@ -55,9 +55,13 @@ class SearchFragment : Fragment() {
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        hideKeyboard()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        hideKeyboard()
     }
 }
