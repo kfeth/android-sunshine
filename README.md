@@ -1,7 +1,12 @@
 Sunshine
 =========================
+![Sunshine](screenshots/ic_launcher_round.png "Sunshine")
 
 A simple Android weather app, providing the ability to search for and view the weather forecast for locations around the world.
+
+![Home Screen](screenshots/home.png "A list of weather locations")
+![Search Screen](screenshots/search.png "Search locations around the world")
+![Weather Details](screenshots/details.png "Weather forecast")
 
 Goals
 ------------
@@ -10,12 +15,6 @@ Although this weather app is quite a simple use case, the primary aims for the p
 * Architecture - experiment with Google's [guide to app architecture][0] and apply a number of concepts and components from [Android Jetpack][1]
 * Testing - aim for a high test coverage ability achieved through the architecture
 * Template - potential starting point for future projects to build on the foundations
-
-Screenshots
-------------
-![Home Screen](screenshots/home.png "A list of weather locations")
-![Search Screen](screenshots/search.png "Search locations around the world")
-![Weather Details](screenshots/details.png "Weather forecast")
 
 API's
 ------------
@@ -49,7 +48,7 @@ Architecture
 ------------
 The project architecture follows the principles outlined in the official guide to app architecture. Each core component and how they interact can be visualised in the graph below:
 
-![architecture](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
+![Architecture](screenshots/architecture.png "App Architecture")
 
 Components can only communicate with other components one level directly below. Allowing for better modularisation and test coverage since components can be easily swapped out or mocked in test conditions.
 
